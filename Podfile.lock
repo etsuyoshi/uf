@@ -1,0 +1,95 @@
+PODS:
+  - AFNetworking (2.5.0):
+    - AFNetworking/NSURLConnection (= 2.5.0)
+    - AFNetworking/NSURLSession (= 2.5.0)
+    - AFNetworking/Reachability (= 2.5.0)
+    - AFNetworking/Security (= 2.5.0)
+    - AFNetworking/Serialization (= 2.5.0)
+    - AFNetworking/UIKit (= 2.5.0)
+  - AFNetworking/NSURLConnection (2.5.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.0)
+  - AFNetworking/Security (2.5.0)
+  - AFNetworking/Serialization (2.5.0)
+  - AFNetworking/UIKit (2.5.0):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - CardIO (5.0.0)
+  - CCBottomRefreshControl (0.3.0):
+    - ReactiveCocoa
+    - UIView+TKGeometry
+  - EAIntroView (2.6.4)
+  - HTPressableButton (1.3.1):
+    - HTPressableButton/All (= 1.3.1)
+  - HTPressableButton/All (1.3.1)
+  - Lambda-Alert (1.0.1)
+  - Mantle (1.5.4):
+    - Mantle/extobjc (= 1.5.4)
+  - Mantle/extobjc (1.5.4)
+  - PaymentKit (1.1.1)
+  - ReactiveCocoa (2.4.4):
+    - ReactiveCocoa/UI (= 2.4.4)
+  - ReactiveCocoa/Core (2.4.4):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.4.4)
+  - ReactiveCocoa/UI (2.4.4):
+    - ReactiveCocoa/Core
+  - REMenu (1.10)
+  - RESideMenu (4.0.7)
+  - SDWebImage (3.7.1):
+    - SDWebImage/Core (= 3.7.1)
+  - SDWebImage/Core (3.7.1)
+  - Stripe (3.1.0):
+    - Stripe/Core (= 3.1.0)
+  - Stripe/Core (3.1.0)
+  - SVProgressHUD (1.1.2)
+  - SVPullToRefresh (0.4.1)
+  - SVWebViewController (HEAD based on 1.0)
+  - UICKeyChainStore (2.0.2)
+  - UIView+TKGeometry (0.2)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.3)
+  - CardIO
+  - CCBottomRefreshControl
+  - EAIntroView
+  - HTPressableButton
+  - Lambda-Alert
+  - Mantle
+  - PaymentKit
+  - REMenu (~> 1.10)
+  - RESideMenu
+  - SDWebImage
+  - Stripe
+  - SVProgressHUD
+  - SVPullToRefresh
+  - SVWebViewController (HEAD)
+  - UICKeyChainStore
+
+SPEC CHECKSUMS:
+  AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
+  CardIO: 98f2e0dff54baa480d560567030eb42e656cf8c5
+  CCBottomRefreshControl: 0dd3b0d9d50a36586495d183a0662fb1d0025579
+  EAIntroView: 8f66dc6b79f2d52db26af8fc5476a05ffc549d4c
+  HTPressableButton: 8ac2184c6d0b9a0d78aaa1727acf51e4365fa1d2
+  Lambda-Alert: ba4824adee17127ef43d82d63be8affa536163cc
+  Mantle: d5fbaf30fbc58031223af13812c060e15934a1fe
+  PaymentKit: f77b4d5cee45947949429c3d587e8eb160a3c9e2
+  ReactiveCocoa: 31119068e3dde866bd257cf74e1f06b4023bf387
+  REMenu: e3988747d83f9e8f49f244bd3f1fb8b0900e8741
+  RESideMenu: a9c1cd2e64e60e1d3166ddac01a83e215a0e4d30
+  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
+  Stripe: aaa174b50fac40a16958cbc892457a241d0b4b08
+  SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
+  SVPullToRefresh: d5161ebc833a38b465364412e5e307ca80bbb190
+  SVWebViewController: fbf917baa92744c54cfb89a52a4c056e409973a4
+  UICKeyChainStore: 14bf8cb308432c2ca7c1b8b600398d4d6af8cb8d
+  UIView+TKGeometry: 60a88dcf2af8420175cb1c789a02d6254ebb89a7
+
+COCOAPODS: 0.35.0

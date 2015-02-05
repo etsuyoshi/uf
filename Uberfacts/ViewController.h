@@ -7,9 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RESideMenu.h"
+#import "ContextMenuCell.h"
+#import "YALContextMenuTableView.h"
+//#import "YALNavigationBar.h"
+
 
 @interface ViewController : UIViewController
+<
+UIScrollViewDelegate
+,UITableViewDelegate
+,UITableViewDataSource
+//,UIWebViewDelegate
+,YALContextMenuTableViewDelegate
+>
 
+@property (nonatomic, strong) YALContextMenuTableView* contextMenuTableView;
+@property (nonatomic, strong) NSString *strSlug;
 
 @end
 
