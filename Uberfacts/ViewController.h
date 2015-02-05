@@ -12,8 +12,14 @@
 #import "YALContextMenuTableView.h"
 //#import "YALNavigationBar.h"
 
+//ga計測
+#import "GAITrackedViewController.h"
 
-@interface ViewController : UIViewController
+
+@class GADBannerView;
+
+//@interface ViewController : UIViewController
+@interface ViewController : GAITrackedViewController
 <
 UIScrollViewDelegate
 ,UITableViewDelegate
@@ -21,6 +27,8 @@ UIScrollViewDelegate
 //,UIWebViewDelegate
 ,YALContextMenuTableViewDelegate
 >
+
+@property (strong, nonatomic) GADBannerView  *bannerView;
 
 @property (nonatomic, strong) YALContextMenuTableView* contextMenuTableView;
 @property (nonatomic, strong) NSString *strSlug;

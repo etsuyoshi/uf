@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5E4153B420DE9BCE2628DF0F"
+               BlueprintIdentifier = "75DDB50CA84D7270A77A6743"
                BuildableName = "libPods-HTPressableButton.a"
                BlueprintName = "Pods-HTPressableButton"
                ReferencedContainer = "container:Pods.xcodeproj">

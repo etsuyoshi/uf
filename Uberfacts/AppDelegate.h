@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
+#import <GoogleAnalytics-iOS-SDK/GAI.h>
+#import <GoogleAnalytics-iOS-SDK/GAIFields.h>
+#import <GoogleAnalytics-iOS-SDK/GAILogger.h>
+#import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, RESideMenuDelegate>
 

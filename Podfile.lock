@@ -25,6 +25,10 @@ PODS:
     - ReactiveCocoa
     - UIView+TKGeometry
   - EAIntroView (2.6.4)
+  - Google-Mobile-Ads-SDK (6.12.2)
+  - GoogleAnalytics-iOS-SDK (3.10):
+    - GoogleAnalytics-iOS-SDK/Core (= 3.10)
+  - GoogleAnalytics-iOS-SDK/Core (3.10)
   - HTPressableButton (1.3.1):
     - HTPressableButton/All (= 1.3.1)
   - HTPressableButton/All (1.3.1)
@@ -59,6 +63,8 @@ DEPENDENCIES:
   - CardIO
   - CCBottomRefreshControl
   - EAIntroView
+  - Google-Mobile-Ads-SDK (~> 6.10)
+  - GoogleAnalytics-iOS-SDK (= 3.10)
   - HTPressableButton
   - Lambda-Alert
   - Mantle
@@ -77,6 +83,8 @@ SPEC CHECKSUMS:
   CardIO: 98f2e0dff54baa480d560567030eb42e656cf8c5
   CCBottomRefreshControl: 0dd3b0d9d50a36586495d183a0662fb1d0025579
   EAIntroView: 8f66dc6b79f2d52db26af8fc5476a05ffc549d4c
+  Google-Mobile-Ads-SDK: 9761186eb5dc5e1493e71dcce2b525159f763d42
+  GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502
   HTPressableButton: 8ac2184c6d0b9a0d78aaa1727acf51e4365fa1d2
   Lambda-Alert: ba4824adee17127ef43d82d63be8affa536163cc
   Mantle: d5fbaf30fbc58031223af13812c060e15934a1fe
@@ -92,4 +100,4 @@ SPEC CHECKSUMS:
   UICKeyChainStore: 14bf8cb308432c2ca7c1b8b600398d4d6af8cb8d
   UIView+TKGeometry: 60a88dcf2af8420175cb1c789a02d6254ebb89a7
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.36.0.beta.1

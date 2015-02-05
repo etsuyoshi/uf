@@ -9,6 +9,11 @@
 #import <Social/Social.h>
 #import <Twitter/Twitter.h>
 
+//admob広告
+#import "GADBannerView.h"
+#import "GADRequest.h"
+
+
 
 
 #import "ViewController.h"
@@ -112,6 +117,9 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    self.screenName = @"first view";
+    
     
     
     [SVProgressHUD showWithStatus:@"更新中.."
@@ -247,6 +255,29 @@ static NSString *const menuCellIdentifier = @"rotationCell";
         
         NSLog(@"viewblack = %@", viewBlack);
 //    }
+    
+    
+    //広告表示
+    int heightAd = 64;
+    self.bannerView =
+    [[GADBannerView alloc]
+     initWithFrame:
+     CGRectMake(0, self.view.bounds.size.height-heightAd,
+                self.view.bounds.size.width,
+                heightAd)];
+    
+    //self.bannerView.adUnitID = @"ca-app-pub-3940256099942544/2934735716";//defaults
+    self.bannerView.adUnitID = @"ca-app-pub-2428023138794278/9842626946";
+    self.bannerView.rootViewController = self;
+    
+    GADRequest *request = [GADRequest request];
+    // Enable test ads on simulators.
+    //    request.testDevices = @[ GAD_SIMULATOR_ID ];
+    request.testDevices = @[@"bd4295ae361d7195eb5f5d8843ad3b741d854ac9"];//endo
+    [self.bannerView loadRequest:request];
+    [self.view addSubview:self.bannerView];
+    
+    
     
     
 //    //以下行間指定
