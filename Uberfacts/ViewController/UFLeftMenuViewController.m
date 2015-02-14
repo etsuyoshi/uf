@@ -87,13 +87,54 @@
     
     
     //このビューが呼ばれた時点でデバイスに保存されていない場合はリアルタイムで読み込む
-    if(arrCategories.count == 1){
+    //特に一番最初は仕方なくこれで対応することにする
+    NSLog(@"arrCategories.count = %d", (int)arrCategories.count);
+    if(arrCategories.count == 0){
+        NSLog(@"以下は実際のサーバーにあるデータを利用して取得");
+        NSArray *arrId = [NSArray arrayWithObjects:@"2",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11", nil];
+        NSArray *arrTitle = [NSArray arrayWithObjects:
+                             @"セックス＆恋愛",
+                             @"野生生物",
+                             @"テレビ＆映画",
+                             @"インターネット",
+                             @"生と死",
+                             @"歴史",
+                             @"自然科学",
+                             @"芸能人",
+                             @"ムダ知識", nil];
+        NSArray *arrSlug =
+        [NSArray arrayWithObjects:
+         @"sex-love",
+         @"wildlife",
+         @"%e3%83%86%e3%83%ac%e3%83%93%ef%bc%86%e6%98%a0%e7%94%bb",
+         @"internet",
+         @"lifeanddeath",
+         @"history",
+         @"scienceandtech",
+         @"celebrities",
+         @"everythingelse",
+         nil];
         
         
         
-    }else{
-        [self setTableviewReload];
+        NSMutableArray *arrTmpCategories = [NSMutableArray array];
+        for(int i = 0;i < arrId.count;i++){
+            UFCategoryObject *category = [[UFCategoryObject alloc]init];
+            category.strId = arrId[i];
+            category.strTitle = arrTitle[i];
+            category.strSlug = arrSlug[i];
+            [arrTmpCategories addObject:category];
+            
+            [arrTableLabels addObject:category.strTitle];
+            NSLog(@"add %@", category.strTitle);
+        }
+        arrCategories = (NSArray *)[arrTmpCategories copy];
+        NSLog(@"arrCategories = %@", arrCategories);
+        
+
     }
+    
+    [self setTableviewReload];
     
 }
 

@@ -29,6 +29,7 @@
 #define HEIGHT_FOOTER_SOCIAL 60
 #define SIZE_LABEL_ORDINARY 26.f
 #define SIZE_LABEL_SMALL 22.f
+#define SIZE_LABEL_MORE_SMALL 18.5f
 #define SIZE_LABEL_VERY_SMALL 15.f
 
 #define STRING_LINE @"LINE"
@@ -80,6 +81,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     NSMutableArray *arrImages;//予備で用意した画像
     UIFont *fontOrdinary;
     UIFont *fontSmall;
+    UIFont *fontMoreSmall;
     UIFont *fontVerySmall;
 }
 
@@ -123,8 +125,59 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     [self initWithMenuOption];
     
     arrImages = [NSMutableArray array];
-    for(int i = 0;i < 13;i++){
-        [arrImages addObject:[NSString stringWithFormat:@"h%d.jpg", i]];
+    //拡張子の種類を用意
+    NSArray *arrFormat =
+    [NSArray arrayWithObjects:
+     @"jpg",@"jpeg",@"png",@"gif",nil];
+    
+    
+    NSDictionary *dictionary =
+    @{
+      @"sex-love" : @"h",
+      @"wildlife" : @"w",
+      @"%e3%83%86%e3%83%ac%e3%83%93%ef%bc%86%e6%98%a0%e7%94%bb": @"c",
+      @"internet" : @"i",
+      @"lifeanddeath" : @"d",
+      @"history" : @"t",
+      @"scienceandtech" : @"t",
+      @"celebrities" : @"c",
+      @"everythingelse" : @"h"
+      };
+    //先頭の頭文字を取得
+    NSString *strHead =
+    [UFCommonMethods isNullComparedToObj:self.strSlug]?
+    @"h":dictionary[self.strSlug];
+    
+    NSString *strImageName = nil;
+    for(int i = 0;i < 100;i++){
+        
+        for(int j = 0;j < arrFormat.count;j++){
+            strImageName = [NSString stringWithFormat:@"%@%d.%@", strHead, i, arrFormat[j]];
+            if(![UFCommonMethods isNullComparedToObj:[UIImage imageNamed:strImageName]]){
+                NSLog(@"%@ is exists", strImageName);
+                [arrImages addObject:strImageName];
+                break;
+            }else{
+                NSLog(@"%@ is not exists", strImageName);
+            }
+        }
+    }
+    
+    //万が一、一つも該当するイメージファイルが存在しない場合は以下で対応
+    if(arrImages.count == 0){
+        //heartなら多いので確実に一つ以上あるので存在しないではhを選択
+        for(int i = 0;i < 100;i++){
+            for(int j = 0;j < arrFormat.count;j++){
+                strImageName = [NSString stringWithFormat:@"h%d.%@", i, arrFormat[j]];
+                if(![UFCommonMethods isNullComparedToObj:[UIImage imageNamed:strImageName]]){
+                    NSLog(@"%@ is exists", strImageName);
+                    [arrImages addObject:strImageName];
+                    break;
+                }else{
+                    NSLog(@"%@ is not exists", strImageName);
+                }
+            }
+        }
     }
     
     //self.title = [UFCommonMethods isNullComparedToObj:self.title]?@"人気記事":self.title;
@@ -227,6 +280,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     
     fontOrdinary = [UIFont italicSystemFontOfSize:SIZE_LABEL_ORDINARY];
     fontSmall = [UIFont italicSystemFontOfSize:SIZE_LABEL_SMALL];
+    fontMoreSmall = [UIFont italicSystemFontOfSize:SIZE_LABEL_MORE_SMALL];
     fontVerySmall = [UIFont italicSystemFontOfSize:SIZE_LABEL_VERY_SMALL];
     
     
@@ -339,7 +393,8 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     lblTextRight.numberOfLines = 0;
     
     viewUnderLeft = [[UIView alloc]initWithFrame:
-                     CGRectMake(0, 0, self.view.bounds.size.width,
+                     CGRectMake(0, 0,
+                                self.view.bounds.size.width,
                                 self.view.bounds.size.height)];
     viewUnderMiddle = [[UIView alloc] initWithFrame:
                        CGRectMake(self.view.bounds.size.width, 0,
@@ -368,10 +423,10 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     
     
     scrollView.contentSize = CGSizeMake(self.view.bounds.size.width*(NUM_OF_CONTENTS+1),
-                                        self.view.bounds.size.height - HEIGHT_NAV_BAR);
+                                        self.view.bounds.size.height - HEIGHT_NAV_BAR-HEIGHT_FOOTER_AD);
     [scrollView scrollRectToVisible:CGRectMake(self.view.bounds.size.width,0,
                                                self.view.bounds.size.width,
-                                               self.view.bounds.size.height-HEIGHT_NAV_BAR)
+                                               self.view.bounds.size.height-HEIGHT_NAV_BAR-HEIGHT_FOOTER_AD)
                            animated:NO];
     
     
@@ -570,6 +625,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 //行間詰める場合：http://qiita.com/Jacminik/items/21f87aadc3a4363b9802
 - (void)loadPageWithId:(int)index onPage:(int)page {
     // load data for page
+    if(index >= arrArticle.count)return;//error case
     UFArticleObject *article = arrArticle[index];
     NSLog(@"article = [%@]", [article entityName]);
     
@@ -583,9 +639,18 @@ static NSString *const menuCellIdentifier = @"rotationCell";
             if([self is4SDevice]){
                 lblTextLeft.font = fontVerySmall;
                 [lblTextLeft sizeToFit];
-            }else if(50+64+marginImageText + lblTextLeft.bounds.size.height + imageTopLeft.bounds.size.height > self.view.bounds.size.height){
+            }else if(64 + HEIGHT_FOOTER_AD + HEIGHT_FOOTER_SOCIAL+marginImageText + lblTextLeft.bounds.size.height + imageTopLeft.bounds.size.height > self.view.bounds.size.height){
                 lblTextLeft.font = fontSmall;//[UIFont systemFontOfSize:SIZE_LABEL_SMALL];
                 [lblTextLeft sizeToFit];
+                
+                
+                
+                //それでもまだ小さいならさらに一段小さくにする
+                if(64 + HEIGHT_FOOTER_AD + HEIGHT_FOOTER_SOCIAL + marginImageText + lblTextLeft.bounds.size.height + imageTopLeft.bounds.size.height > self.view.bounds.size.height){
+                    lblTextLeft.font = fontMoreSmall;
+                    [lblTextLeft sizeToFit];
+                }
+                
             }else{
                 lblTextLeft.font = fontOrdinary;//[UIFont systemFontOfSize:SIZE_LABEL_ORDINARY];
                 [lblTextLeft sizeToFit];
@@ -605,7 +670,12 @@ static NSString *const menuCellIdentifier = @"rotationCell";
                  if(![UFCommonMethods isNullComparedToObj:image]){
                      [imageTopLeft setImage:image];
                  }else{
-                     [imageTopLeft setImage:[UIImage imageNamed:arrImages[[article.strId integerValue] % arrImages.count]]];
+                     NSLog(@"article.strId = %@", article.strId);
+                     NSLog(@"[article.strid integerValue]=%d", [article.strId integerValue]);
+                     NSLog(@"arrImages.count = %d", (int)arrImages.count);
+                     if(arrImages.count > 0){
+                         [imageTopLeft setImage:[UIImage imageNamed:arrImages[[article.strId integerValue] % arrImages.count]]];
+                     }
                  }
              }];
             break;
@@ -618,9 +688,17 @@ static NSString *const menuCellIdentifier = @"rotationCell";
             if([self is4SDevice]){
                 lblTextMiddle.font = fontVerySmall;
                 [lblTextMiddle sizeToFit];
-            }else if(50+64+marginImageText + lblTextMiddle.bounds.size.height + imageTopMiddle.bounds.size.height > self.view.bounds.size.height){
+            }else if(64 + HEIGHT_FOOTER_AD + HEIGHT_FOOTER_SOCIAL+marginImageText + lblTextMiddle.bounds.size.height + imageTopMiddle.bounds.size.height > self.view.bounds.size.height){
                 lblTextMiddle.font = fontSmall;//[UIFont systemFontOfSize:SIZE_LABEL_SMALL];
                 [lblTextMiddle sizeToFit];
+                
+                
+                //それでもまだ小さいならさらに一段小さくにする
+                if(64 + HEIGHT_FOOTER_AD + HEIGHT_FOOTER_SOCIAL + marginImageText + lblTextMiddle.bounds.size.height + imageTopMiddle.bounds.size.height > self.view.bounds.size.height){
+                    lblTextMiddle.font = fontMoreSmall;
+                    [lblTextMiddle sizeToFit];
+                }
+                
             }else{
                 lblTextMiddle.font = fontOrdinary;//[UIFont systemFontOfSize:SIZE_LABEL_ORDINARY];
                 [lblTextMiddle sizeToFit];
@@ -655,9 +733,19 @@ static NSString *const menuCellIdentifier = @"rotationCell";
             if([self is4SDevice]){
                 lblTextRight.font = fontVerySmall;
                 [lblTextRight sizeToFit];
-            }else if(50 + 64+marginImageText + lblTextRight.bounds.size.height + imageTopRight.bounds.size.height > self.view.bounds.size.height){
+                
+            }else if(64 + HEIGHT_FOOTER_AD + HEIGHT_FOOTER_SOCIAL+marginImageText + lblTextRight.bounds.size.height + imageTopRight.bounds.size.height > self.view.bounds.size.height){
                 lblTextRight.font = fontSmall;//[UIFont systemFontOfSize:SIZE_LABEL_SMALL];
-                [lblTextRight sizeToFit];
+                [lblTextRight sizeToFit];//一段小さくする
+                
+                //それでもまだ小さいなら更に一段小さくにする
+                if(64 + HEIGHT_FOOTER_AD + HEIGHT_FOOTER_SOCIAL + marginImageText + lblTextRight.bounds.size.height + imageTopRight.bounds.size.height > self.view.bounds.size.height){
+                    lblTextRight.font = fontMoreSmall;
+                    [lblTextRight sizeToFit];
+                }
+                
+                
+                
             }else{
                 lblTextRight.font = fontOrdinary;//[UIFont systemFontOfSize:SIZE_LABEL_ORDINARY];
                 [lblTextRight sizeToFit];

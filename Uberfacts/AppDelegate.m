@@ -48,85 +48,23 @@
 //    [navigationController.navigationBar setTranslucent:YES];
 //    navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor JinDarkPinkColor]};
     
-    [UICKeyChainStore removeAllItems];//test
     
-    [[UFSessionManager sharedClient]
-     getCategoriesWithCompletion:^(NSDictionary *results,
-                                   NSURLSessionDataTask *task,
-                                   NSError *error){
-         if([UFCommonMethods isNullComparedToObj:error]){
-             NSLog(@"results = %@", results);
-             
-             NSLog(@"categories = %@", results[STRING_API_OUTPUT_LABEL_CATEGORIES]);
-             
-             //カテゴリ配列が取得できたらkeychainに格納してmenu viewcontrollerで表示できるようにする
-             
-             NSMutableArray *arrayMenu = [NSMutableArray array];
-             for(NSDictionary *dictCategory in results[STRING_API_OUTPUT_LABEL_CATEGORIES]){
-                 [arrayMenu addObject:[[UFCategoryObject alloc] initWithDictionary:dictCategory]];
-             }
-             
-             arrayMenu = [UFCommonMethods getSortedById:arrayMenu];
-             for(int i =0;i < arrayMenu.count;i++){
-                 UFCategoryObject *obj = arrayMenu[i];
-                 NSLog(@"1i=%d, id=%@, title=%@", i, obj.strId, obj.strTitle);
-             }
-             
-             //            results[STRING_API_OUTPUT_LABEL_CATEGORIES];//[NSMutableArray array];
-             [UFCommonMethods
-              setKeyChainStoreWithObjectValue:(NSArray *)arrayMenu
-              asKey:@"categories"];
-             
-             NSArray *returnArray =
-             [UFCommonMethods
-              getArrayKeyChainStore:@"categories"];
-             for(int i =0;i < returnArray.count;i++){
-                 NSLog(@"i = %d, obj = %@, id = %@, slug = %@", i, returnArray[i],
-                       ((UFCategoryObject *)returnArray[i]).strId,
-                       ((UFCategoryObject *)returnArray[i]).strSlug);
-             }
-             
-             for(NSDictionary *dictionary in results[STRING_API_OUTPUT_LABEL_CATEGORIES]){
-                 NSLog(@"dictionary = %@", dictionary);
-                 
-             }
-             
-             
-         }else{//エラーの場合
-             [SVProgressHUD showErrorWithStatus:@"カテゴリ情報が取得できませんでした"];
-             NSLog(@"error = %@", error);
-         }
-     }];
-
-    
-    
+    [UICKeyChainStore removeAllItems];//テスト
     
     UFLeftMenuViewController *leftMenuViewController = [[UFLeftMenuViewController alloc] init];
-//    UFRightMenuViewController *rightMenuViewController = [[UFRightMenuViewController alloc] init];
+    //    UFRightMenuViewController *rightMenuViewController = [[UFRightMenuViewController alloc] init];
     
     RESideMenu *sideMenuViewController =
     [[RESideMenu alloc] initWithContentViewController:navigationController
                                leftMenuViewController:leftMenuViewController
                               rightMenuViewController:nil
-//                              rightMenuViewController:rightMenuViewController
+     //                              rightMenuViewController:rightMenuViewController
      ];
     
     
     
     //sideMenuViewController.backgroundImage = [UIImage imageNamed:@"Stars"];
     sideMenuViewController.backgroundImage = [UIImage imageNamed:@"back2.jpg"];
-    
-//    UIImageView *imv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"condome"]];
-//    
-//    UIVisualEffect *blurEffect;
-//    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-//    UIVisualEffectView *visualEffectView;
-//    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-//    visualEffectView.frame = sideMenuViewController.view.bounds;
-//    [imv addSubview:visualEffectView];
-    
-    //[sideMenuViewController.view addSubview:visualEffectView];
-//    [sideMenuViewController.view sendSubviewToBack:visualEffectView];
     
     sideMenuViewController.menuPreferredStatusBarStyle = 1; // UIStatusBarStyleLightContent
     sideMenuViewController.delegate = self;
@@ -142,7 +80,6 @@
     return YES;
     
     
-//    return YES;
 }
 
 
