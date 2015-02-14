@@ -113,16 +113,22 @@
     NSMutableDictionary *parameters =
     [NSMutableDictionary dictionary];
     
+    
+    
     if(![UFCommonMethods
-         isNullComparedToObj:strSlug]){
+         isNullComparedToObj:strSlug] &&
+       ![strSlug isEqualToString:@"popular"]){
+        NSLog(@"slug指定がある場合");
+        //slug指定がある場合
         parameters[STRING_API_KEY_SLUG] = strSlug;
-        
+    
         parameters[STRING_API_KEY_COUNT] = DATA_GET_NUM_MAX;//@"100";
         //http://pocketti.zombie.jp/trivia/api/get_category_posts/
         [self getMethodWithUrl:@"/trivia/api/get_category_posts/"
                      parameter:parameters
                     completion:block];
     }else{
+        NSLog(@"getItemsNewestWithCompletion");
         [self getItemsNewestWithCompletion:block];
     }
     

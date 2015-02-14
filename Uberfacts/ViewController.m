@@ -115,7 +115,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
+    NSLog(@"%s, slug = %@", __func__, self.strSlug);
     //google analytics
     self.screenName = [NSString stringWithFormat:@"firstView:%@", self.strSlug];
     
@@ -135,7 +135,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     @{
       @"sex-love" : @"h",
       @"wildlife" : @"w",
-      @"%e3%83%86%e3%83%ac%e3%83%93%ef%bc%86%e6%98%a0%e7%94%bb": @"c",
+      @"%e3%83%86%e3%83%ac%e3%83%93%ef%bc%86%e6%98%a0%e7%94%bb": @"c",//テレビ
       @"internet" : @"i",
       @"lifeanddeath" : @"d",
       @"history" : @"t",
@@ -256,13 +256,13 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     imageTopRight.contentMode = UIViewContentModeScaleAspectFill;
     
     
-    int margin = 10;
-    marginImageText = 18;
-    rectFrame = CGRectMake(margin, imageTopLeft.bounds.size.height+marginImageText,
-                           self.view.bounds.size.width-2*margin,
+    int marginTextToLeft = 10;
+    marginImageText = 10;
+    rectFrame = CGRectMake(marginTextToLeft, imageTopLeft.bounds.size.height+marginImageText,
+                           self.view.bounds.size.width-2*marginTextToLeft,
                            self.view.bounds.size.height-imageTopLeft.bounds.size.height);
     
-    float heightLabel = self.view.bounds.size.height - HEIGHT_NAV_BAR - margin;
+    float heightLabel = self.view.bounds.size.height - HEIGHT_NAV_BAR - marginTextToLeft;
     CGRect rectLabel = CGRectMake(0, rectImage.size.height,
                                   self.view.bounds.size.width,
                                   heightLabel);

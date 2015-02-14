@@ -49,7 +49,7 @@
 //    navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor JinDarkPinkColor]};
     
     
-    [UICKeyChainStore removeAllItems];//テスト
+//    [UICKeyChainStore removeAllItems];//テスト
     
     UFLeftMenuViewController *leftMenuViewController = [[UFLeftMenuViewController alloc] init];
     //    UFRightMenuViewController *rightMenuViewController = [[UFRightMenuViewController alloc] init];
