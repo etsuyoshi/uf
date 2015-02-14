@@ -146,12 +146,18 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     //先頭の頭文字を取得
     NSString *strHead =
     [UFCommonMethods isNullComparedToObj:self.strSlug]?
-    @"h":dictionary[self.strSlug];
+    [NSNull null]:dictionary[self.strSlug];
+    NSLog(@"strHead = %@", strHead);
     
     NSString *strImageName = nil;
     for(int i = 0;i < 100;i++){
         
         for(int j = 0;j < arrFormat.count;j++){
+            
+            if([UFCommonMethods isNullComparedToObj:self.strSlug]){
+                strHead = [[dictionary allValues] objectAtIndex:(arc4random() % dictionary.count)];
+                NSLog(@"i = %d, j = %d, strHead = %@", i, j, strHead);
+            }
             strImageName = [NSString stringWithFormat:@"%@%d.%@", strHead, i, arrFormat[j]];
             if(![UFCommonMethods isNullComparedToObj:[UIImage imageNamed:strImageName]]){
                 NSLog(@"%@ is exists", strImageName);
@@ -207,11 +213,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     
     
     arrArticle = [NSMutableArray array];
-    //テスト：実際には記事モデルオブジェクトを格納する（出力側も考慮する)
-//    for(int i = 0;i < 100;i ++){
-//        NSString *str = [NSString stringWithFormat:@"obj:%d", i];
-//        [arrArticle addObject:str];
-//    }
+    
     
     self.view.backgroundColor = [UIColor whiteColor];
     scrollView =
@@ -226,16 +228,6 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator   = NO;
     
-//    UIWebView *webView = [[UIWebView alloc]initWithFrame:
-//                          CGRectMake(i*self.view.bounds.size.width,0,
-//                                     self.view.bounds.size.width,
-//                                     self.view.bounds.size.height)];
-//    NSURL *url = [NSURL URLWithString:
-//                  [NSString stringWithFormat:@"http://pocketti.zombie.jp/trivia/%d", i+1]];
-//    NSURLRequest *req = [NSURLRequest requestWithURL:url];
-//    [webView loadRequest:req];
-//    webView.delegate = self;
-//    [scrollView addSubview:webView];
     
     
 //    float goldRatio = 5.f/8.f;
@@ -311,34 +303,37 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 //    }
     
     
-    //sky-blue-button
-    UIView *viewSkyBlue = [[UIView alloc]initWithFrame:
-                           CGRectMake(0, self.view.bounds.size.height - HEIGHT_FOOTER_SOCIAL - HEIGHT_FOOTER_AD,
-                                      self.view.bounds.size.width, HEIGHT_FOOTER_SOCIAL)];
-    viewSkyBlue.backgroundColor = RGB(128, 224, 255);//sky-blue-color
-    [self.view addSubview:viewSkyBlue];
+    NSDate *now = [NSDate date];
     
-    //ツィートボタン
-    UIImageView *imvTweet = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"tweetTrivia"]];
-    imvTweet.frame = CGRectMake(0, self.view.bounds.size.height - HEIGHT_FOOTER_AD - HEIGHT_FOOTER_SOCIAL,
-                                320,//画像サイズ調整のため一定にする
-                                HEIGHT_FOOTER_SOCIAL);
-    imvTweet.center = CGPointMake(self.view.center.x,
-                                  imvTweet.center.y);
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger flags;
+    NSDateComponents *comps;
     
-    imvTweet.clipsToBounds = YES;
-    imvTweet.contentMode = UIViewContentModeScaleAspectFill;
-    [self.view addSubview:imvTweet];
-    [self.view bringSubviewToFront:imvTweet];
+    // 年・月・日を取得
+    flags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay;
+    comps = [calendar components:flags fromDate:now];
+    
+    NSInteger year = comps.year;
+    NSInteger month = comps.month;
+    NSInteger day = comps.day;
+    
+    NSLog(@"%ld年 %ld月 %ld日", year, month, day);
+    
+    //NSDateFormatterクラスを出力する。
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    
+    //Localeを指定。ここでは日本を設定。
+    [format setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"ja_JP"]];
+    [format setDateFormat:@"yyyyMMdd"];
+    NSString *nowTime = [format stringFromDate:[NSDate date]];
+    NSLog(@"nowTime = %@", nowTime);
     
     
-    //反応用ボタン
-    UIView *viewForButton = [[UIView alloc]initWithFrame:viewSkyBlue.frame];
-    viewForButton.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:viewForButton];
-    
-    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tappedTweetLogo:)];
-    [viewForButton addGestureRecognizer:gesture];
+    if([nowTime integerValue] < 20150310){
+        NSLog(@"no tweet");
+    }else{//2015年３月10日以降であればツィートボタンを生成
+        [self setTweetComponent];
+    }
     
     
     //広告表示
@@ -640,6 +635,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
                 lblTextLeft.font = fontVerySmall;
                 [lblTextLeft sizeToFit];
             }else if(64 + HEIGHT_FOOTER_AD + HEIGHT_FOOTER_SOCIAL+marginImageText + lblTextLeft.bounds.size.height + imageTopLeft.bounds.size.height > self.view.bounds.size.height){
+                
                 lblTextLeft.font = fontSmall;//[UIFont systemFontOfSize:SIZE_LABEL_SMALL];
                 [lblTextLeft sizeToFit];
                 
@@ -1144,5 +1140,41 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     [self postTwitter:strSendMessage];
     
     
+}
+
+
+//viewdidload内で
+-(void)setTweetComponent{
+    
+    NSLog(@"%s", __func__);
+    
+    //sky-blue-button
+    UIView *viewSkyBlue = [[UIView alloc]initWithFrame:
+                           CGRectMake(0, self.view.bounds.size.height - HEIGHT_FOOTER_SOCIAL - HEIGHT_FOOTER_AD,
+                                      self.view.bounds.size.width, HEIGHT_FOOTER_SOCIAL)];
+    viewSkyBlue.backgroundColor = RGB(128, 224, 255);//sky-blue-color
+    [self.view addSubview:viewSkyBlue];
+    
+    //ツィートボタン
+    UIImageView *imvTweet = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"tweetTrivia"]];
+    imvTweet.frame = CGRectMake(0, self.view.bounds.size.height - HEIGHT_FOOTER_AD - HEIGHT_FOOTER_SOCIAL,
+                                320,//画像サイズ調整のため一定にする
+                                HEIGHT_FOOTER_SOCIAL);
+    imvTweet.center = CGPointMake(self.view.center.x,
+                                  imvTweet.center.y);
+    
+    imvTweet.clipsToBounds = YES;
+    imvTweet.contentMode = UIViewContentModeScaleAspectFill;
+    [self.view addSubview:imvTweet];
+    [self.view bringSubviewToFront:imvTweet];
+    
+    
+    //反応用ボタン
+    UIView *viewForButton = [[UIView alloc]initWithFrame:viewSkyBlue.frame];
+    viewForButton.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:viewForButton];
+    
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tappedTweetLogo:)];
+    [viewForButton addGestureRecognizer:gesture];
 }
 @end
