@@ -132,6 +132,8 @@
 
 - (void)presentLeftMenuViewController
 {
+    NSLog(@"%s", __func__);
+    
     [self presentMenuViewContainerWithMenuViewController:self.leftMenuViewController];
     [self showLeftMenuViewController];
 }

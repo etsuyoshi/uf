@@ -28,5 +28,7 @@
                                  asKey:(NSString *)strKey;
 
 +(void)setNavigationBar:(UINavigationBar*)navBar;
+
++(NSMutableArray *)getSortedById:(NSMutableArray *)arrayArg;
     
 @end

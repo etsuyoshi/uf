@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
+#import "GAITrackedViewController.h"
 
-@interface UFLeftMenuViewController : UIViewController
+@interface UFLeftMenuViewController : GAITrackedViewController
 <UITableViewDataSource, UITableViewDelegate>
 @end

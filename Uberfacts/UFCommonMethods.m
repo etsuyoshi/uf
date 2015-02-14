@@ -110,5 +110,34 @@
     
 }
 
+//bubble sort by id in UFCategoryObject
++(NSMutableArray *)getSortedById:(NSMutableArray *)arrayArg{
+    NSMutableArray *arrayRet = [arrayArg mutableCopy];
+    // 最後の要素を除いて、すべての要素を並べ替えます
+    for(int i=0;i<arrayRet.count-1;i++){
+        NSLog(@"i = %d", i);
+        // 下から上に順番に比較します
+        for(int j=(int)arrayRet.count-1;j>i;j--){
+            NSLog(@"j = %d", j);
+            
+            int idj = (int)[((UFCategoryObject *)arrayRet[j]).strId integerValue];
+            int idj_1 = (int)[((UFCategoryObject *)arrayRet[j-1]).strId integerValue];
+            NSLog(@"idj = %d, idj_1 = %d", idj, idj_1);
+            // 上の方が大きいときは互いに入れ替えます
+            if(idj<idj_1){
+                id t=arrayRet[j];
+                arrayRet[j]=arrayRet[j-1];
+                arrayRet[j-1]=t;
+            }
+        }
+    }
+    
+    for(int i =0;i < arrayRet.count;i++){
+        UFCategoryObject *obj = arrayRet[i];
+        NSLog(@"i=%d, id=%@, title=%@", i, obj.strId, obj.strTitle);
+    }
+    
+    return arrayRet;
+}
 
 @end

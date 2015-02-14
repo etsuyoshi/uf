@@ -10,8 +10,8 @@
 #import "ViewController.h"
 #import "UFSecondViewController.h"
 #import "UFCategoryObject.h"
-#import "UFCommonMethods.h"
 #import "UIColor+UFColor.h"
+
 
 #define HEIGHT_CATEGORY_ROW 54
 
@@ -29,8 +29,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    //google analytics
+    self.screenName = @"menuView";
+    
+    
+    
     // Do any additional setup after loading the view.
     arrTableLabels = [NSMutableArray arrayWithObjects:@"人気", nil];
+    
+    
+    
     
     
     UIVisualEffect *blurEffect;
@@ -75,6 +85,20 @@
     
     arrCategories = [UFCommonMethods getArrayKeyChainStore:@"categories"];
     
+    
+    //このビューが呼ばれた時点でデバイスに保存されていない場合はリアルタイムで読み込む
+    if(arrCategories.count == 1){
+        
+        
+        
+    }else{
+        [self setTableviewReload];
+    }
+    
+}
+
+-(void)setTableviewReload{
+    
     NSLog(@"arrCategories = %@", arrCategories);
     for(UFCategoryObject *category in arrCategories){
         if([category isKindOfClass:[UFCategoryObject class]]){
@@ -112,13 +136,25 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSString *strTopArticle = @"人気記事";
+    NSString *strSendMessage =
+    (indexPath.row == 0)?strTopArticle:arrCategories[indexPath.row-1];
+    //どこのカテゴリを見ているのか
+    id<GAITracker> tracker =
+    [[GAI sharedInstance] defaultTracker];
+    [tracker send:
+     [[GAIDictionaryBuilder
+       createEventWithCategory:@"MenuView"
+       action:[NSString stringWithFormat:@"tapped:%@", strSendMessage]
+       label:nil
+       value:nil] build]];
     
     if(indexPath.row < arrCategories.count+1){//最上段が最新,それ以外は各カテゴリ
         ViewController *vc = [[ViewController alloc]init];
         
         if(indexPath.row == 0){
-            vc.strSlug = nil;//newest
-            vc.title = @"人気記事";
+            vc.strSlug = @"popular";//人気記事はgoogle analytics対応のため
+            vc.title = strTopArticle;
         }else if(indexPath.row-1 < arrCategories.count){
             int categoryNo = (int)indexPath.row-1;
             UFCategoryObject *obj = arrCategories[categoryNo];

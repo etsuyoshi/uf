@@ -4,33 +4,29 @@
 //
 //  Created by EndoTsuyoshi on 2015/01/27.
 //  Copyright (c) 2015年 com.endo. All rights reserved.
-//
+
+#define RGB(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]
+#define RGBA(r, g, b, a)    [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+
+#define STRING_URL_BITLY @"http://bit.ly/1Fa93V5"
+#define STRING_URL_DEFAULT @"https://itunes.apple.com/us/app/dokutatoribia/id963743985?l=ja&ls=1&mt=8"
 
 #import <Social/Social.h>
 #import <Twitter/Twitter.h>
 
-//admob広告
-#import "GADBannerView.h"
-#import "GADRequest.h"
-
-
 
 
 #import "ViewController.h"
-#import "UFSessionManager.h"
-#import "UFCommonMethods.h"
-#import "SVProgressHUD.h"
-#import "UICKeyChainStore.h"
-#import "UFCategoryObject.h"
-#import "UFArticleObject.h"
-#import <SDWebImage/UIImageView+WebCache.h>
+
+
 #import "LINEActivity.h"
 #import "TwActivity.h"
 #import "UIColor+UFColor.h"
 #define HEIGHT_IMAGE 200
 #define NUM_OF_CONTENTS 3
 #define HEIGHT_NAV_BAR 64
-#define HEIGHT_FOOTER_BAR 64
+#define HEIGHT_FOOTER_AD 44
+#define HEIGHT_FOOTER_SOCIAL 60
 #define SIZE_LABEL_ORDINARY 26.f
 #define SIZE_LABEL_SMALL 22.f
 #define SIZE_LABEL_VERY_SMALL 15.f
@@ -118,8 +114,8 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    self.screenName = @"first view";
-    
+    //google analytics
+    self.screenName = [NSString stringWithFormat:@"firstView:%@", self.strSlug];
     
     
     [SVProgressHUD showWithStatus:@"更新中.."
@@ -131,8 +127,13 @@ static NSString *const menuCellIdentifier = @"rotationCell";
         [arrImages addObject:[NSString stringWithFormat:@"h%d.jpg", i]];
     }
     
-//    self.title = [UFCommonMethods isNullComparedToObj:self.strSlug]?@"Newest":self.strSlug;
-    self.title = [UFCommonMethods isNullComparedToObj:self.title]?@"人気記事":self.title;
+    //self.title = [UFCommonMethods isNullComparedToObj:self.title]?@"人気記事":self.title;
+    if([self.title isEqualToString:@"popular"] ||
+       [UFCommonMethods isNullComparedToObj:self.title]){
+        self.title = @"人気記事";
+    }
+    
+    
     self.navigationItem.leftBarButtonItem =
     [[UIBarButtonItem alloc] initWithTitle:@"メニュー"
                                      style:UIBarButtonItemStylePlain
@@ -164,14 +165,13 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     [[UIScrollView alloc]
      initWithFrame:
      CGRectMake(0, 0, self.view.bounds.size.width,
-                self.view.bounds.size.height
-                -HEIGHT_FOOTER_BAR
-                )];
+                self.view.bounds.size.height-HEIGHT_FOOTER_AD - HEIGHT_FOOTER_SOCIAL)];
     scrollView.scrollEnabled = YES;
     scrollView.pagingEnabled = YES;
     [scrollView setBounces:NO];
     scrollView.delegate = self;
-
+    scrollView.showsHorizontalScrollIndicator = NO;
+    scrollView.showsVerticalScrollIndicator   = NO;
     
 //    UIWebView *webView = [[UIWebView alloc]initWithFrame:
 //                          CGRectMake(i*self.view.bounds.size.width,0,
@@ -239,32 +239,61 @@ static NSString *const menuCellIdentifier = @"rotationCell";
         //フッター
         UIView *viewBlack =
         [[UIView alloc]initWithFrame:
-         CGRectMake(0, self.view.bounds.size.height-HEIGHT_FOOTER_BAR,
+         CGRectMake(0, self.view.bounds.size.height-HEIGHT_FOOTER_AD,
                     self.view.bounds.size.width,
-                    HEIGHT_FOOTER_BAR)];
+                    HEIGHT_FOOTER_AD)];
         viewBlack.backgroundColor = [UIColor JinBlackColor];
         [self.view addSubview:viewBlack];
         
         
         UIImageView *imvOwl = [[UIImageView alloc]initWithImage:
                                [UIImage imageNamed:@"owl_noBack.png"]];
-        imvOwl.frame = CGRectMake(0, 0, HEIGHT_FOOTER_BAR*2/3, HEIGHT_FOOTER_BAR*2/3);
+        imvOwl.frame = CGRectMake(0, 0, HEIGHT_FOOTER_AD*2.5f/3, HEIGHT_FOOTER_AD*2.5f/3);
         imvOwl.center = CGPointMake(self.view.bounds.size.width/2,
-                                    15+HEIGHT_FOOTER_BAR/2);
+                                    10+HEIGHT_FOOTER_AD/2);
         [viewBlack addSubview:imvOwl];
         
         NSLog(@"viewblack = %@", viewBlack);
 //    }
     
     
+    //sky-blue-button
+    UIView *viewSkyBlue = [[UIView alloc]initWithFrame:
+                           CGRectMake(0, self.view.bounds.size.height - HEIGHT_FOOTER_SOCIAL - HEIGHT_FOOTER_AD,
+                                      self.view.bounds.size.width, HEIGHT_FOOTER_SOCIAL)];
+    viewSkyBlue.backgroundColor = RGB(128, 224, 255);//sky-blue-color
+    [self.view addSubview:viewSkyBlue];
+    
+    //ツィートボタン
+    UIImageView *imvTweet = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"tweetTrivia"]];
+    imvTweet.frame = CGRectMake(0, self.view.bounds.size.height - HEIGHT_FOOTER_AD - HEIGHT_FOOTER_SOCIAL,
+                                320,//画像サイズ調整のため一定にする
+                                HEIGHT_FOOTER_SOCIAL);
+    imvTweet.center = CGPointMake(self.view.center.x,
+                                  imvTweet.center.y);
+    
+    imvTweet.clipsToBounds = YES;
+    imvTweet.contentMode = UIViewContentModeScaleAspectFill;
+    [self.view addSubview:imvTweet];
+    [self.view bringSubviewToFront:imvTweet];
+    
+    
+    //反応用ボタン
+    UIView *viewForButton = [[UIView alloc]initWithFrame:viewSkyBlue.frame];
+    viewForButton.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:viewForButton];
+    
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tappedTweetLogo:)];
+    [viewForButton addGestureRecognizer:gesture];
+    
+    
     //広告表示
-    int heightAd = 64;
     self.bannerView =
     [[GADBannerView alloc]
      initWithFrame:
-     CGRectMake(0, self.view.bounds.size.height-heightAd,
+     CGRectMake(0, self.view.bounds.size.height-HEIGHT_FOOTER_AD,
                 self.view.bounds.size.width,
-                heightAd)];
+                HEIGHT_FOOTER_AD)];
     
     //self.bannerView.adUnitID = @"ca-app-pub-3940256099942544/2934735716";//defaults
     self.bannerView.adUnitID = @"ca-app-pub-2428023138794278/9842626946";
@@ -369,6 +398,11 @@ static NSString *const menuCellIdentifier = @"rotationCell";
                  article = nil;
              }
              
+             if(arrArticle.count > 0){
+                 [self reserveArticles:(NSArray *)arrArticle
+                              asNameOf:(NSString *)self.strSlug];
+             }
+             
              //初期ページの更新
              if(arrArticle.count > 3){
                  [self loadPageWithId:(int)arrArticle.count-1 onPage:0];
@@ -402,7 +436,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
                 [arrayMenu addObject:[[UFCategoryObject alloc] initWithDictionary:dictCategory]];
             }
             
-            arrayMenu = [self getSortedById:arrayMenu];
+            arrayMenu = [UFCommonMethods getSortedById:arrayMenu];
             for(int i =0;i < arrayMenu.count;i++){
                 UFCategoryObject *obj = arrayMenu[i];
                 NSLog(@"1i=%d, id=%@, title=%@", i, obj.strId, obj.strTitle);
@@ -700,6 +734,16 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 }
 
 - (void)presentMenuButtonTapped:(UIBarButtonItem *)sender {
+    
+    
+    //どこのカテゴリを見ているのか
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"FirstView"
+                                                          action:@"tappedMenuButton"
+                                                           label:nil
+                                                           value:nil] build]];
+
+    
     // init YALContextMenuTableView tableView
     NSLog(@"%s", __func__);
     if ([UFCommonMethods isNullComparedToObj:self.contextMenuTableView]) {
@@ -761,6 +805,9 @@ static NSString *const menuCellIdentifier = @"rotationCell";
                         stringWithFormat:@"知ってた？"];
     string = [string
               stringByAppendingString:strText];
+    
+    string = [string
+              stringByAppendingString:STRING_URL_BITLY];
     
     //エンコード
     string = [string
@@ -838,6 +885,15 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 
 - (void)contextMenuTableView:(YALContextMenuTableView *)contextMenuTableView didDismissWithIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"Menu dismissed with indexpath = %@", indexPath);
+    
+    
+    //どこのカテゴリを見ているのか
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"tappedClose"
+                                                          action:self.strSlug
+                                                           label:nil
+                                                           value:nil] build]];
+
 }
 
 #pragma mark - UITableViewDataSource, UITableViewDelegate
@@ -845,6 +901,17 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 - (void)tableView:(YALContextMenuTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSLog(@"%s", __func__);
+    
+    
+    //どのメニューをタップしたのか
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"FirstView"
+                                                          action:self.menuTitles[indexPath.row]
+                                                           label:nil
+                                                           value:nil] build]];
+
+    
+    
     [tableView dismisWithIndexPath:indexPath];
     
     UFArticleObject *article = arrArticle[currIndex];
@@ -889,35 +956,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 }
 
 
-//bubble sort by id in UFCategoryObject
--(NSMutableArray *)getSortedById:(NSMutableArray *)arrayArg{
-    NSMutableArray *arrayRet = [arrayArg mutableCopy];
-    // 最後の要素を除いて、すべての要素を並べ替えます
-    for(int i=0;i<arrayRet.count-1;i++){
-        NSLog(@"i = %d", i);
-        // 下から上に順番に比較します
-        for(int j=(int)arrayRet.count-1;j>i;j--){
-            NSLog(@"j = %d", j);
-            
-            int idj = (int)[((UFCategoryObject *)arrayRet[j]).strId integerValue];
-            int idj_1 = (int)[((UFCategoryObject *)arrayRet[j-1]).strId integerValue];
-            NSLog(@"idj = %d, idj_1 = %d", idj, idj_1);
-            // 上の方が大きいときは互いに入れ替えます
-            if(idj<idj_1){
-                id t=arrayRet[j];
-                arrayRet[j]=arrayRet[j-1];
-                arrayRet[j-1]=t;
-            }
-        }
-    }
-    
-    for(int i =0;i < arrayRet.count;i++){
-        UFCategoryObject *obj = arrayRet[i];
-        NSLog(@"i=%d, id=%@, title=%@", i, obj.strId, obj.strTitle);
-    }
-    
-    return arrayRet;
-}
 
 //https://github.com/mglagola/MGInstagram
 -(void)postInstagram:(NSString *)strSendMessage{
@@ -938,10 +976,12 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 // Twitter
 - (void)postTwitter:(NSString *)strText {
     NSLog(@"%s", __func__);
-    NSString* postContent = [NSString stringWithFormat:@"知ってた？「%@」", strText];
+    NSString* postContent = [NSString stringWithFormat:@"%@ #ドクトリ %@", strText,
+                             STRING_URL_BITLY];
 //    NSURL* appURL = [NSURL URLWithString:_entry.link];
     // =========== iOSバージョンで、処理を分岐 ============
     // iOS Version
+    
     NSString *iosVersion =
     [[[UIDevice currentDevice]
       systemVersion]
@@ -980,7 +1020,41 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     return YES;
 }
                
-               -(BOOL)is4SDevice{
-                   return (self.view.bounds.size.height < 500);
-               }
+-(BOOL)is4SDevice{
+    return (self.view.bounds.size.height < 500);
+}
+
+
+-(void)reserveArticles:(NSArray *)arrArticles
+              asNameOf:(NSString *)strSlug{
+    NSString *strKey = [UFCommonMethods isNullComparedToObj:strSlug]?@"total":strSlug;
+    
+    //デバイス保存について
+    //指定したキーstrKeyで保存されている配列を取得
+    //取得した配列の中でarrArticlesの要素と等しくないものを先頭に挿入する
+    
+    //表示順序
+    //順序的には通信中に、先にデバイス保存の配列を表示。
+    //通信結果のデータが取得できたらそれを現在表示用の配列の最後に追加→後ろに追加することになる
+    
+    //表示用配列の要素となる記事オブジェクトには表示済みかどうかの判断フラグが必要
+    
+    
+}
+
+
+-(void)tappedTweetLogo:(id)sender{
+    
+    NSLog(@"%s", __func__);
+    
+    
+    
+    
+    UFArticleObject *article = arrArticle[currIndex];
+    NSString *strSendMessage = [self getRidOfTag:article.strContent];
+    
+    [self postTwitter:strSendMessage];
+    
+    
+}
 @end

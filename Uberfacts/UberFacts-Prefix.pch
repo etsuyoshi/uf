@@ -1,0 +1,33 @@
+//
+//  PrefixHeader.pch
+//  Uberfacts
+//
+//  Created by EndoTsuyoshi on 2015/02/14.
+//  Copyright (c) 2015年 com.endo. All rights reserved.
+//
+
+#ifndef Uberfacts_PrefixHeader_pch
+#define Uberfacts_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import <GoogleAnalytics-iOS-SDK/GAI.h>
+#import "GAIDictionaryBuilder.h"
+#import "UFCommonMethods.h"
+#import "UFSessionManager.h"
+#import "UFCategoryObject.h"
+#import "UFArticleObject.h"
+#import "SVProgressHUD.h"
+//admob広告
+#import "GADBannerView.h"
+#import "GADRequest.h"
+#import "UICKeyChainStore.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
+
+#endif
+
+#if DEBUG
+#else
+#   define NSLog( args... )
+#endif

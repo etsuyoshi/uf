@@ -48,6 +48,58 @@
 //    [navigationController.navigationBar setTranslucent:YES];
 //    navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor JinDarkPinkColor]};
     
+    [UICKeyChainStore removeAllItems];//test
+    
+    [[UFSessionManager sharedClient]
+     getCategoriesWithCompletion:^(NSDictionary *results,
+                                   NSURLSessionDataTask *task,
+                                   NSError *error){
+         if([UFCommonMethods isNullComparedToObj:error]){
+             NSLog(@"results = %@", results);
+             
+             NSLog(@"categories = %@", results[STRING_API_OUTPUT_LABEL_CATEGORIES]);
+             
+             //カテゴリ配列が取得できたらkeychainに格納してmenu viewcontrollerで表示できるようにする
+             
+             NSMutableArray *arrayMenu = [NSMutableArray array];
+             for(NSDictionary *dictCategory in results[STRING_API_OUTPUT_LABEL_CATEGORIES]){
+                 [arrayMenu addObject:[[UFCategoryObject alloc] initWithDictionary:dictCategory]];
+             }
+             
+             arrayMenu = [UFCommonMethods getSortedById:arrayMenu];
+             for(int i =0;i < arrayMenu.count;i++){
+                 UFCategoryObject *obj = arrayMenu[i];
+                 NSLog(@"1i=%d, id=%@, title=%@", i, obj.strId, obj.strTitle);
+             }
+             
+             //            results[STRING_API_OUTPUT_LABEL_CATEGORIES];//[NSMutableArray array];
+             [UFCommonMethods
+              setKeyChainStoreWithObjectValue:(NSArray *)arrayMenu
+              asKey:@"categories"];
+             
+             NSArray *returnArray =
+             [UFCommonMethods
+              getArrayKeyChainStore:@"categories"];
+             for(int i =0;i < returnArray.count;i++){
+                 NSLog(@"i = %d, obj = %@, id = %@, slug = %@", i, returnArray[i],
+                       ((UFCategoryObject *)returnArray[i]).strId,
+                       ((UFCategoryObject *)returnArray[i]).strSlug);
+             }
+             
+             for(NSDictionary *dictionary in results[STRING_API_OUTPUT_LABEL_CATEGORIES]){
+                 NSLog(@"dictionary = %@", dictionary);
+                 
+             }
+             
+             
+         }else{//エラーの場合
+             [SVProgressHUD showErrorWithStatus:@"カテゴリ情報が取得できませんでした"];
+             NSLog(@"error = %@", error);
+         }
+     }];
+
+    
+    
     
     UFLeftMenuViewController *leftMenuViewController = [[UFLeftMenuViewController alloc] init];
 //    UFRightMenuViewController *rightMenuViewController = [[UFRightMenuViewController alloc] init];
