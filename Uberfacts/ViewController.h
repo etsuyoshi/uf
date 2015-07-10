@@ -5,7 +5,7 @@
 //  Created by EndoTsuyoshi on 2015/01/27.
 //  Copyright (c) 2015年 com.endo. All rights reserved.
 //
-
+@import GoogleMobileAds;
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
 #import "ContextMenuCell.h"
@@ -16,7 +16,7 @@
 #import "GAITrackedViewController.h"
 
 
-@class GADBannerView;
+//@class GADBannerView;
 
 //@interface ViewController : UIViewController
 @interface ViewController : GAITrackedViewController
@@ -26,9 +26,10 @@ UIScrollViewDelegate
 ,UITableViewDataSource
 //,UIWebViewDelegate
 ,YALContextMenuTableViewDelegate
+,UITextFieldDelegate
 >
 
-@property (strong, nonatomic) GADBannerView  *bannerView;
+//@property (strong, nonatomic) GADBannerView  *bannerView;
 
 @property (nonatomic, strong) YALContextMenuTableView* contextMenuTableView;
 @property (nonatomic, strong) NSString *strSlug;

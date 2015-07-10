@@ -27,10 +27,11 @@
 #define HEIGHT_NAV_BAR 64
 #define HEIGHT_FOOTER_AD 44
 #define HEIGHT_FOOTER_SOCIAL 60
-#define SIZE_LABEL_ORDINARY 26.f
-#define SIZE_LABEL_SMALL 22.f
-#define SIZE_LABEL_MORE_SMALL 18.5f
-#define SIZE_LABEL_VERY_SMALL 15.f
+#define HEIGHT_LINE 37
+#define SIZE_LABEL_ORDINARY 26
+//#define SIZE_LABEL_SMALL 260//22.f
+//#define SIZE_LABEL_MORE_SMALL 260//18.5f
+//#define SIZE_LABEL_VERY_SMALL 260//15.f
 
 #define STRING_LINE @"LINE"
 #define STRING_TWITTER @"Twitter"
@@ -48,11 +49,14 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 //https://books.google.co.jp/books?id=qJZiAwAAQBAJ&pg=PA327&lpg=PA327&dq=uiactivityviewcontroller+line+%E9%80%A3%E6%90%BA&source=bl&ots=qnWjBRUI39&sig=Pa93jJGkiv3F3FSG8kCtQTr3278&hl=ja&sa=X&ei=iWTKVN3hJ4LpmQWuyoCABQ&ved=0CEIQ6AEwBQ#v=onepage&q=uiactivityviewcontroller%20line%20%E9%80%A3%E6%90%BA&f=false
 //http://zutto-megane.com/objective-c/post-367/
 
-@interface ViewController ()
+@interface ViewController (){
+    
+    GADBannerView *bannerView;
+}
 
 @property (nonatomic, strong) NSArray *menuTitles;
 @property (nonatomic, strong) NSArray *menuIcons;
-
+//@property (strong, nonatomic) GADBannerView  *bannerView;
 
 @end
 
@@ -65,9 +69,9 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     UIImageView *imageTopLeft;
     UIImageView *imageTopMiddle;
     UIImageView *imageTopRight;
-    UILabel *lblTextLeft;
-    UILabel *lblTextMiddle;
-    UILabel *lblTextRight;
+    UITextView *tvLeft;
+    UITextView *tvMiddle;
+    UITextView *tvRight;
     
     int currIndex;
     int nextIndex;
@@ -80,9 +84,10 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     
     NSMutableArray *arrImages;//予備で用意した画像
     UIFont *fontOrdinary;
-    UIFont *fontSmall;
-    UIFont *fontMoreSmall;
-    UIFont *fontVerySmall;
+//    UIFont *fontSmall;
+//    UIFont *fontMoreSmall;
+//    UIFont *fontVerySmall;
+    
 }
 
 -(void)initWithMenuOption{
@@ -115,7 +120,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    NSLog(@"%s, slug = %@", __func__, self.strSlug);
+    NSLog(@"%s, frame = %@, slug = %@", __func__, NSStringFromCGRect(self.view.frame) ,self.strSlug);
     //google analytics
     self.screenName = [NSString stringWithFormat:@"firstView:%@", self.strSlug];
     
@@ -131,7 +136,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
      @"jpg",@"jpeg",@"png",@"gif",nil];
     
     
-    NSDictionary *dictionary =
+    NSDictionary *dictSections =
     @{
       @"sex-love" : @"h",
       @"wildlife" : @"w",
@@ -146,16 +151,16 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     //先頭の頭文字を取得
     NSString *strHead =
     [UFCommonMethods isNullComparedToObj:self.strSlug]?
-    [NSNull null]:dictionary[self.strSlug];
+    [NSNull null]:dictSections[self.strSlug];
     NSLog(@"strHead = %@", strHead);
     
+    //現状開いているセクション(self.strSulg)に相応しい画像を100枚取得してarrImagesに格納する
     NSString *strImageName = nil;
     for(int i = 0;i < 100;i++){
         
         for(int j = 0;j < arrFormat.count;j++){
-            
             if([UFCommonMethods isNullComparedToObj:self.strSlug]){
-                strHead = [[dictionary allValues] objectAtIndex:(arc4random() % dictionary.count)];
+                strHead = [[dictSections allValues] objectAtIndex:(arc4random() % dictSections.count)];
                 NSLog(@"i = %d, j = %d, strHead = %@", i, j, strHead);
             }
             strImageName = [NSString stringWithFormat:@"%@%d.%@", strHead, i, arrFormat[j]];
@@ -215,28 +220,29 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     arrArticle = [NSMutableArray array];
     
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor blackColor];
     scrollView =
     [[UIScrollView alloc]
      initWithFrame:
      CGRectMake(0, 0, self.view.bounds.size.width,
-                self.view.bounds.size.height-HEIGHT_FOOTER_AD - HEIGHT_FOOTER_SOCIAL)];
+                self.view.bounds.size.height - HEIGHT_FOOTER_AD)];
+//                self.view.bounds.size.height-HEIGHT_FOOTER_AD - HEIGHT_FOOTER_SOCIAL)];
     scrollView.scrollEnabled = YES;
     scrollView.pagingEnabled = YES;
     [scrollView setBounces:NO];
     scrollView.delegate = self;
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator   = NO;
+    scrollView.backgroundColor = [UIColor whiteColor];
     
     
     
 //    float goldRatio = 5.f/8.f;
     CGRect rectImage = CGRectMake(0, 0, self.view.bounds.size.width,
-                                  self.view.bounds.size.width*6.f/5.f-64);
-//                                  self.view.bounds.size.width * goldRatio);
+                                  self.view.bounds.size.width-100);
+    
     imageTopLeft = [[UIImageView alloc]initWithFrame:rectImage];
     imageTopMiddle = [[UIImageView alloc]initWithFrame:rectImage];
-//    imageTopMiddle.backgroundColor = [UIColor redColor];
     imageTopRight = [[UIImageView alloc]initWithFrame:rectImage];
     
     imageTopLeft.clipsToBounds = YES;
@@ -249,40 +255,45 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     
     
     int marginTextToLeft = 10;
-    marginImageText = 10;
-    rectFrame = CGRectMake(marginTextToLeft, imageTopLeft.bounds.size.height+marginImageText,
+    marginImageText = 10;//画像とテキストの間隔
+    rectFrame = CGRectMake(marginTextToLeft,
+                           imageTopLeft.bounds.size.height+marginImageText,
                            self.view.bounds.size.width-2*marginTextToLeft,
-                           self.view.bounds.size.height-imageTopLeft.bounds.size.height);
+//                           100);
+                           self.view.bounds.size.height-imageTopLeft.bounds.size.height - marginImageText - 70);
     
-    float heightLabel = self.view.bounds.size.height - HEIGHT_NAV_BAR - marginTextToLeft;
+    float heightLabel = self.view.bounds.size.height - HEIGHT_NAV_BAR - marginImageText;
     CGRect rectLabel = CGRectMake(0, rectImage.size.height,
                                   self.view.bounds.size.width,
                                   heightLabel);
-    lblTextLeft = [[UILabel alloc] initWithFrame:rectLabel];
-    lblTextMiddle = [[UILabel alloc] initWithFrame:rectLabel];
-    lblTextRight = [[UILabel alloc] initWithFrame:rectLabel];
-    lblTextLeft.backgroundColor = [UIColor clearColor];
-    lblTextMiddle.backgroundColor = [UIColor clearColor];
-    lblTextRight.backgroundColor = [UIColor clearColor];
+    tvLeft = [[UITextView alloc] initWithFrame:rectLabel];
+    tvMiddle = [[UITextView alloc] initWithFrame:rectLabel];
+    tvRight = [[UITextView alloc] initWithFrame:rectLabel];
+    tvLeft.backgroundColor = [UIColor clearColor];
+    tvMiddle.backgroundColor = [UIColor clearColor];
+    tvRight.backgroundColor = [UIColor clearColor];
     
     UIColor *colorLabel = [UIColor colorWithRed:68.f/255.f green:68.f/255.f blue:68.f/255.f alpha:1.f];
-    lblTextLeft.textColor = colorLabel;
-    lblTextMiddle.textColor = colorLabel;
-    lblTextRight.textColor = colorLabel;
+    tvLeft.textColor = colorLabel;
+    tvMiddle.textColor = colorLabel;
+    tvRight.textColor = colorLabel;
     
     fontOrdinary = [UIFont italicSystemFontOfSize:SIZE_LABEL_ORDINARY];
-    fontSmall = [UIFont italicSystemFontOfSize:SIZE_LABEL_SMALL];
-    fontMoreSmall = [UIFont italicSystemFontOfSize:SIZE_LABEL_MORE_SMALL];
-    fontVerySmall = [UIFont italicSystemFontOfSize:SIZE_LABEL_VERY_SMALL];
+//    fontSmall = [UIFont italicSystemFontOfSize:SIZE_LABEL_SMALL];
+//    fontMoreSmall = [UIFont italicSystemFontOfSize:SIZE_LABEL_MORE_SMALL];
+//    fontVerySmall = [UIFont italicSystemFontOfSize:SIZE_LABEL_VERY_SMALL];
     
     
-    lblTextLeft.font = fontOrdinary;
-    lblTextMiddle.font = fontOrdinary;
-    lblTextRight.font = fontOrdinary;
+    tvLeft.font = fontOrdinary;
+    tvMiddle.font = fontOrdinary;
+    tvRight.font = fontOrdinary;
     
     
 //    if(self.view.bounds.size.height > 500){
         //フッター
+    //広告表示領域削除
+    
+    /*
         UIView *viewBlack =
         [[UIView alloc]initWithFrame:
          CGRectMake(0, self.view.bounds.size.height-HEIGHT_FOOTER_AD,
@@ -300,24 +311,26 @@ static NSString *const menuCellIdentifier = @"rotationCell";
         [viewBlack addSubview:imvOwl];
         
         NSLog(@"viewblack = %@", viewBlack);
+    */
+    
 //    }
     
     
-    NSDate *now = [NSDate date];
-    
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSUInteger flags;
-    NSDateComponents *comps;
-    
-    // 年・月・日を取得
-    flags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay;
-    comps = [calendar components:flags fromDate:now];
-    
-    NSInteger year = comps.year;
-    NSInteger month = comps.month;
-    NSInteger day = comps.day;
-    
-    NSLog(@"%ld年 %ld月 %ld日", year, month, day);
+//    NSDate *now = [NSDate date];
+//    
+//    NSCalendar *calendar = [NSCalendar currentCalendar];
+//    NSUInteger flags;
+//    NSDateComponents *comps;
+//    
+//    // 年・月・日を取得
+//    flags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay;
+//    comps = [calendar components:flags fromDate:now];
+//    
+//    NSInteger year = comps.year;
+//    NSInteger month = comps.month;
+//    NSInteger day = comps.day;
+//    
+//    NSLog(@"%ld年 %ld月 %ld日", year, month, day);
     
     //NSDateFormatterクラスを出力する。
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
@@ -329,63 +342,10 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     NSLog(@"nowTime = %@", nowTime);
     
     
-    if([nowTime integerValue] < 20150310){
-        NSLog(@"no tweet");
-    }else{//2015年３月10日以降であればツィートボタンを生成
-        [self setTweetComponent];
-    }
-    
-    
-    //広告表示
-    self.bannerView =
-    [[GADBannerView alloc]
-     initWithFrame:
-     CGRectMake(0, self.view.bounds.size.height-HEIGHT_FOOTER_AD,
-                self.view.bounds.size.width,
-                HEIGHT_FOOTER_AD)];
-    
-    //self.bannerView.adUnitID = @"ca-app-pub-3940256099942544/2934735716";//defaults
-    self.bannerView.adUnitID = @"ca-app-pub-2428023138794278/9842626946";
-    self.bannerView.rootViewController = self;
-    
-    GADRequest *request = [GADRequest request];
-    // Enable test ads on simulators.
-    //    request.testDevices = @[ GAD_SIMULATOR_ID ];
-    request.testDevices = @[@"bd4295ae361d7195eb5f5d8843ad3b741d854ac9"];//endo
-    [self.bannerView loadRequest:request];
-    [self.view addSubview:self.bannerView];
-    
-    
-    
-    
-//    //以下行間指定
-//    CGFloat customLineHeight = 32.0f;
-//    
-//    // パラグラフスタイルにlineHeightをセット
-//    NSMutableParagraphStyle *paragrahStyle = [[NSMutableParagraphStyle alloc] init];
-//    paragrahStyle.minimumLineHeight = customLineHeight;
-//    paragrahStyle.maximumLineHeight = customLineHeight;
-//    
-//    // NSAttributedStringを生成してパラグラフスタイルをセット
-//    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:@""];
-//    [attributedText addAttribute:NSParagraphStyleAttributeName
-//                           value:paragrahStyle
-//                           range:NSMakeRange(0, attributedText.length)];
-//    
-////    lblTextMiddle
-//    lblTextLeft.attributedText = attributedText;
-//    lblTextMiddle.attributedText = attributedText;
-//    lblTextRight.attributedText = attributedText;
-    
-    
 
-//    lblTextLeft.backgroundColor = [UIColor redColor];
-//    lblTextMiddle.backgroundColor = [UIColor greenColor];
-//    lblTextRight.backgroundColor = [UIColor blueColor];
     
-    lblTextLeft.numberOfLines = 0;
-    lblTextMiddle.numberOfLines = 0;
-    lblTextRight.numberOfLines = 0;
+    NSLog(@"Google Mobile Ads SDK version: %@", [GADRequest sdkVersion]);
+    
     
     viewUnderLeft = [[UIView alloc]initWithFrame:
                      CGRectMake(0, 0,
@@ -408,9 +368,9 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     [viewUnderMiddle addSubview:imageTopMiddle];
     [viewUnderRight addSubview:imageTopRight];
     
-    [viewUnderLeft addSubview:lblTextLeft];
-    [viewUnderMiddle addSubview:lblTextMiddle];
-    [viewUnderRight addSubview:lblTextRight];
+    [viewUnderLeft addSubview:tvLeft];
+    [viewUnderMiddle addSubview:tvMiddle];
+    [viewUnderRight addSubview:tvRight];
     
     [scrollView addSubview:viewUnderLeft];
     [scrollView addSubview:viewUnderMiddle];
@@ -424,7 +384,6 @@ static NSString *const menuCellIdentifier = @"rotationCell";
                                                self.view.bounds.size.height-HEIGHT_NAV_BAR-HEIGHT_FOOTER_AD)
                            animated:NO];
     
-    
     [self.view addSubview:scrollView];
     
     
@@ -433,6 +392,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
      completion:^(NSDictionary *resultsGetItem,
                   NSURLSessionDataTask *taskGetItem,
                   NSError *errorGetItem){
+         
          if([UFCommonMethods isNullComparedToObj:errorGetItem]){
              NSLog(@"results:category %@ = %@",
                    resultsGetItem[STRING_API_OUTPUT_LABEL_SLUG],
@@ -465,7 +425,6 @@ static NSString *const menuCellIdentifier = @"rotationCell";
          }else{
              [SVProgressHUD showErrorWithStatus:
               [NSString stringWithFormat:@"取得できませんでした"]];
-             
          }
      }];
     
@@ -519,6 +478,14 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     }];
     
     
+    
+//    if([nowTime integerValue] < 20150310){
+//        NSLog(@"no tweet");
+//    }else{//2015年３月10日以降であればツィートボタンを生成
+//        [self setTweetComponent];
+//    }
+
+    
 }
 
 
@@ -561,63 +528,6 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 }
 
 
-
-
-//- (BOOL)webView:(UIWebView *)webView
-//shouldStartLoadWithRequest:(NSURLRequest *)request
-// navigationType:(UIWebViewNavigationType)navigationType
-//{
-//    //test:そのまま遷移させるテスト
-//    //    return YES;
-//    NSLog(@"%s : request=%@, type=%d", __func__, request, (int)navigationType);
-//    
-//    
-//    
-//    if(navigationType == UIWebViewNavigationTypeOther) {//初回起動時
-//        NSLog(@"typeOther : %d", (int)navigationType);
-//        return YES;
-//    }else if(navigationType == UIWebViewNavigationTypeLinkClicked){//リンクをクリックしたとき
-//        
-//        NSString *strUrl = [[request URL] absoluteString];
-//        NSRange range = [strUrl rangeOfString:@"/items/"];//この文言はすべての商品に共通に含まれる
-//        NSLog(@"strUrl = %@", strUrl);
-//        
-//        //アイテムへのリンクではないリンクが押下された場合の処理
-//        if (range.location != NSNotFound) {
-//            NSLog(@"検索対象が存在した場合の処理");
-//            
-//            //urlを文字列判定して、該当するショップがあれば遷移させる
-//            NSLog(@"typeClicked : %d", (int)navigationType);
-//            
-//            NSLog(@"ページ遷移");
-//            //アイテムページ遷移機能
-//            
-//            
-//            //urlからitemidのみ取得する
-////            NSString *strAbstractedItemId = [self getItemIdFromUrl:strUrl];
-////            
-////            ETItemTable4ViewController *tvc = [[ETItemTable4ViewController alloc]init];
-////            tvc.title = @"page from webview";
-////            tvc.strItemId = strAbstractedItemId;//@"734633";
-////            [self.navigationController pushViewController:tvc animated:YES];
-//            
-//            strUrl = nil;
-//            //ページ遷移させない
-//            return NO;
-//        }else{
-//            strUrl = nil;
-//            //該当するショップが存在しなければそのまま遷移させる
-//            return YES;
-//        }
-//    }else{
-//        NSLog(@"unknown type : %d", (int)navigationType);
-//    }
-//    
-//    return YES;
-//}
-
-
-//行間詰める場合：http://qiita.com/Jacminik/items/21f87aadc3a4363b9802
 - (void)loadPageWithId:(int)index onPage:(int)page {
     // load data for page
     if(index >= arrArticle.count)return;//error case
@@ -626,40 +536,43 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     
     switch (page) {
         case 0:{
-//            lblTextLeft.text = [arrArticle objectAtIndex:index];
-            lblTextLeft.text = [self getRidOfTag:article.strContent];
-            lblTextLeft.frame = rectFrame;
-            [lblTextLeft sizeToFit];
+//            tvLeft.text = [self getRidOfTag:article.strContent];
+            tvLeft.attributedText =
+            [UFCommonMethods getAttributedString:[self getRidOfTag:article.strContent]
+                                  withLineHeight:HEIGHT_LINE];
+            tvLeft.font = fontOrdinary;
+            tvLeft.frame = rectFrame;
+//            [lblTextLeft sizeToFit];
             
-            if([self is4SDevice]){
-                lblTextLeft.font = fontVerySmall;
-                [lblTextLeft sizeToFit];
-            }else if(64 + HEIGHT_FOOTER_AD + HEIGHT_FOOTER_SOCIAL+marginImageText + lblTextLeft.bounds.size.height + imageTopLeft.bounds.size.height > self.view.bounds.size.height){
-                
-                lblTextLeft.font = fontSmall;//[UIFont systemFontOfSize:SIZE_LABEL_SMALL];
-                [lblTextLeft sizeToFit];
-                
-                
-                
-                //それでもまだ小さいならさらに一段小さくにする
-                if(64 + HEIGHT_FOOTER_AD + HEIGHT_FOOTER_SOCIAL + marginImageText + lblTextLeft.bounds.size.height + imageTopLeft.bounds.size.height > self.view.bounds.size.height){
-                    lblTextLeft.font = fontMoreSmall;
-                    [lblTextLeft sizeToFit];
-                }
-                
-            }else{
-                lblTextLeft.font = fontOrdinary;//[UIFont systemFontOfSize:SIZE_LABEL_ORDINARY];
-                [lblTextLeft sizeToFit];
-            }
-            lblTextLeft.frame = CGRectMake(rectFrame.origin.x,
-                                           rectFrame.origin.y,
-                                           lblTextLeft.bounds.size.width,
-                                           lblTextLeft.bounds.size.height);
-            lblTextLeft.center = CGPointMake(self.view.bounds.size.width/2,
-                                             lblTextLeft.center.y);
-//            lblTextLeft.text = [NSString stringWithFormat:@"(%d)%@",
-//                                (int)(64+marginImageText + lblTextLeft.bounds.size.height + imageTopLeft.bounds.size.height),
-//                                lblTextLeft.text];
+//            if([self is4SDevice]){
+//                lblTextLeft.font = fontVerySmall;
+////                [lblTextLeft sizeToFit];
+//            }else if(64 + HEIGHT_FOOTER_AD + HEIGHT_FOOTER_SOCIAL+marginImageText + lblTextLeft.bounds.size.height + imageTopLeft.bounds.size.height > self.view.bounds.size.height){
+//                
+//                lblTextLeft.font = fontSmall;//[UIFont systemFontOfSize:SIZE_LABEL_SMALL];
+////                [lblTextLeft sizeToFit];
+//                
+//                
+//                
+//                //それでもまだ小さいならさらに一段小さくにする
+//                if(64 + HEIGHT_FOOTER_AD + HEIGHT_FOOTER_SOCIAL + marginImageText + lblTextLeft.bounds.size.height + imageTopLeft.bounds.size.height > self.view.bounds.size.height){
+//                    lblTextLeft.font = fontMoreSmall;
+////                    [lblTextLeft sizeToFit];
+//                }
+//                
+//            }else{
+//                lblTextLeft.font = fontOrdinary;//[UIFont systemFontOfSize:SIZE_LABEL_ORDINARY];
+////                [lblTextLeft sizeToFit];
+//            }
+//            lblTextLeft.frame = CGRectMake(rectFrame.origin.x,
+//                                           rectFrame.origin.y,
+//                                           lblTextLeft.bounds.size.width,
+//                                           lblTextLeft.bounds.size.height);
+//            lblTextLeft.center = CGPointMake(self.view.bounds.size.width/2,
+//                                             lblTextLeft.center.y);
+////            lblTextLeft.text = [NSString stringWithFormat:@"(%d)%@",
+////                                (int)(64+marginImageText + lblTextLeft.bounds.size.height + imageTopLeft.bounds.size.height),
+////                                lblTextLeft.text];
             [imageTopLeft
              sd_setImageWithURL:[NSURL URLWithString:article.strUrl]
              completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){
@@ -667,7 +580,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
                      [imageTopLeft setImage:image];
                  }else{
                      NSLog(@"article.strId = %@", article.strId);
-                     NSLog(@"[article.strid integerValue]=%d", [article.strId integerValue]);
+                     NSLog(@"[article.strid integerValue]=%d", (int)[article.strId integerValue]);
                      NSLog(@"arrImages.count = %d", (int)arrImages.count);
                      if(arrImages.count > 0){
                          [imageTopLeft setImage:[UIImage imageNamed:arrImages[[article.strId integerValue] % arrImages.count]]];
@@ -677,39 +590,44 @@ static NSString *const menuCellIdentifier = @"rotationCell";
             break;
         }
         case 1:{
-            lblTextMiddle.text = [self getRidOfTag:article.strContent];//[arrArticle objectAtIndex:index];
-            lblTextMiddle.frame = rectFrame;
-            [lblTextMiddle sizeToFit];
+//            tvMiddle.text = [self getRidOfTag:article.strContent];//[arrArticle objectAtIndex:index];
+            tvMiddle.attributedText =
+            [UFCommonMethods
+             getAttributedString:[self getRidOfTag:article.strContent]
+             withLineHeight:HEIGHT_LINE];
+            tvMiddle.font = fontOrdinary;
+            tvMiddle.frame = rectFrame;
+//            [lblTextMiddle sizeToFit];
             
-            if([self is4SDevice]){
-                lblTextMiddle.font = fontVerySmall;
-                [lblTextMiddle sizeToFit];
-            }else if(64 + HEIGHT_FOOTER_AD + HEIGHT_FOOTER_SOCIAL+marginImageText + lblTextMiddle.bounds.size.height + imageTopMiddle.bounds.size.height > self.view.bounds.size.height){
-                lblTextMiddle.font = fontSmall;//[UIFont systemFontOfSize:SIZE_LABEL_SMALL];
-                [lblTextMiddle sizeToFit];
-                
-                
-                //それでもまだ小さいならさらに一段小さくにする
-                if(64 + HEIGHT_FOOTER_AD + HEIGHT_FOOTER_SOCIAL + marginImageText + lblTextMiddle.bounds.size.height + imageTopMiddle.bounds.size.height > self.view.bounds.size.height){
-                    lblTextMiddle.font = fontMoreSmall;
-                    [lblTextMiddle sizeToFit];
-                }
-                
-            }else{
-                lblTextMiddle.font = fontOrdinary;//[UIFont systemFontOfSize:SIZE_LABEL_ORDINARY];
-                [lblTextMiddle sizeToFit];
-            }
-            
-//            lblTextMiddle.text = [NSString stringWithFormat:@"(%d)%@",
-//                                (int)(64+marginImageText + lblTextMiddle.bounds.size.height + imageTopMiddle.bounds.size.height),
-//                                lblTextMiddle.text];
-            
-            lblTextMiddle.frame = CGRectMake(rectFrame.origin.x,
-                                           rectFrame.origin.y,
-                                           lblTextMiddle.bounds.size.width,
-                                             lblTextMiddle.bounds.size.height);
-            lblTextMiddle.center = CGPointMake(self.view.bounds.size.width/2,
-                                             lblTextMiddle.center.y);
+//            if([self is4SDevice]){
+//                tvMiddle.font = fontVerySmall;
+//                [tvMiddle sizeToFit];
+//            }else if(64 + HEIGHT_FOOTER_AD + HEIGHT_FOOTER_SOCIAL+marginImageText + tvMiddle.bounds.size.height + imageTopMiddle.bounds.size.height > self.view.bounds.size.height){
+//                tvMiddle.font = fontSmall;//[UIFont systemFontOfSize:SIZE_LABEL_SMALL];
+////                [lblTextMiddle sizeToFit];
+//                
+//                
+//                //それでもまだ小さいならさらに一段小さくにする
+//                if(64 + HEIGHT_FOOTER_AD + HEIGHT_FOOTER_SOCIAL + marginImageText + tvMiddle.bounds.size.height + imageTopMiddle.bounds.size.height > self.view.bounds.size.height){
+//                    tvMiddle.font = fontMoreSmall;
+////                    [lblTextMiddle sizeToFit];
+//                }
+//                
+//            }else{
+//                tvMiddle.font = fontOrdinary;//[UIFont systemFontOfSize:SIZE_LABEL_ORDINARY];
+////                [lblTextMiddle sizeToFit];
+//            }
+//            
+////            lblTextMiddle.text = [NSString stringWithFormat:@"(%d)%@",
+////                                (int)(64+marginImageText + lblTextMiddle.bounds.size.height + imageTopMiddle.bounds.size.height),
+////                                lblTextMiddle.text];
+//            
+//            tvMiddle.frame = CGRectMake(rectFrame.origin.x,
+//                                           rectFrame.origin.y,
+//                                           tvMiddle.bounds.size.width,
+//                                             tvMiddle.bounds.size.height);
+//            tvMiddle.center = CGPointMake(self.view.bounds.size.width/2,
+//                                             tvMiddle.center.y);
             [imageTopMiddle
              sd_setImageWithURL:[NSURL URLWithString:article.strUrl]
              completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){
@@ -722,41 +640,45 @@ static NSString *const menuCellIdentifier = @"rotationCell";
             break;
         }
         case 2:{
-            lblTextRight.text = [self getRidOfTag:article.strContent];//[arrArticle objectAtIndex:index];
-            lblTextRight.frame = rectFrame;
-            [lblTextRight sizeToFit];
+//            tvRight.text = [self getRidOfTag:article.strContent];//[arrArticle objectAtIndex:index];
+            tvRight.attributedText =
+            [UFCommonMethods getAttributedString:[self getRidOfTag:article.strContent]
+                                  withLineHeight:HEIGHT_LINE];
+            tvRight.frame = rectFrame;
+            tvRight.font = fontOrdinary;
+//            [lblTextRight sizeToFit];
             
-            if([self is4SDevice]){
-                lblTextRight.font = fontVerySmall;
-                [lblTextRight sizeToFit];
-                
-            }else if(64 + HEIGHT_FOOTER_AD + HEIGHT_FOOTER_SOCIAL+marginImageText + lblTextRight.bounds.size.height + imageTopRight.bounds.size.height > self.view.bounds.size.height){
-                lblTextRight.font = fontSmall;//[UIFont systemFontOfSize:SIZE_LABEL_SMALL];
-                [lblTextRight sizeToFit];//一段小さくする
-                
-                //それでもまだ小さいなら更に一段小さくにする
-                if(64 + HEIGHT_FOOTER_AD + HEIGHT_FOOTER_SOCIAL + marginImageText + lblTextRight.bounds.size.height + imageTopRight.bounds.size.height > self.view.bounds.size.height){
-                    lblTextRight.font = fontMoreSmall;
-                    [lblTextRight sizeToFit];
-                }
-                
-                
-                
-            }else{
-                lblTextRight.font = fontOrdinary;//[UIFont systemFontOfSize:SIZE_LABEL_ORDINARY];
-                [lblTextRight sizeToFit];
-            }
-            
-//            lblTextRight.text = [NSString stringWithFormat:@"(%d)%@",
-//                                (int)(64+marginImageText + lblTextRight.bounds.size.height + imageTopRight.bounds.size.height),
-//                                lblTextRight.text];
-            
-            lblTextRight.frame = CGRectMake(rectFrame.origin.x,
-                                           rectFrame.origin.y,
-                                           lblTextRight.bounds.size.width,
-                                           lblTextRight.bounds.size.height);
-            lblTextRight.center = CGPointMake(self.view.bounds.size.width/2,
-                                             lblTextRight.center.y);
+//            if([self is4SDevice]){
+//                tvRight.font = fontVerySmall;
+////                [lblTextRight sizeToFit];
+//                
+//            }else if(64 + HEIGHT_FOOTER_AD + HEIGHT_FOOTER_SOCIAL+marginImageText + tvRight.bounds.size.height + imageTopRight.bounds.size.height > self.view.bounds.size.height){
+//                tvRight.font = fontSmall;//[UIFont systemFontOfSize:SIZE_LABEL_SMALL];
+////                [lblTextRight sizeToFit];//一段小さくする
+//                
+//                //それでもまだ小さいなら更に一段小さくにする
+//                if(64 + HEIGHT_FOOTER_AD + HEIGHT_FOOTER_SOCIAL + marginImageText + tvRight.bounds.size.height + imageTopRight.bounds.size.height > self.view.bounds.size.height){
+//                    tvRight.font = fontMoreSmall;
+////                    [lblTextRight sizeToFit];
+//                }
+//                
+//                
+//                
+//            }else{
+//                tvRight.font = fontOrdinary;//[UIFont systemFontOfSize:SIZE_LABEL_ORDINARY];
+////                [lblTextRight sizeToFit];
+//            }
+//            
+////            lblTextRight.text = [NSString stringWithFormat:@"(%d)%@",
+////                                (int)(64+marginImageText + lblTextRight.bounds.size.height + imageTopRight.bounds.size.height),
+////                                lblTextRight.text];
+//            
+//            tvRight.frame = CGRectMake(rectFrame.origin.x,
+//                                           rectFrame.origin.y,
+//                                           tvRight.bounds.size.width,
+//                                           tvRight.bounds.size.height);
+//            tvRight.center = CGPointMake(self.view.bounds.size.width/2,
+//                                             tvRight.center.y);
             [imageTopRight
              sd_setImageWithURL:[NSURL URLWithString:article.strUrl]
              completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){
@@ -819,8 +741,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 
 - (void)presentMenuButtonTapped:(UIBarButtonItem *)sender {
     
-    
-    //どこのカテゴリを見ているのか
+//    どのカテゴリで何枚フリックした状態で（飽きて？）メニューをタップするのかみたい→label?value?を送りたい！！（将来的に）
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"FirstView"
                                                           action:@"tappedMenuButton"
@@ -830,6 +751,17 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     
     // init YALContextMenuTableView tableView
     NSLog(@"%s", __func__);
+    
+    if(self.view.bounds.size.width > 414){//6pより大きい端末ではYALContextMenuが有効でない可能性があるので強制的にツィッターにする
+        //記事データが取得できていない状態でツイートしようとするとアウト
+        if(currIndex < arrArticle.count){
+            UFArticleObject *article = arrArticle[currIndex];
+            [self postTwitter:[self getRidOfTag:article.strContent]];
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"記事情報が取得できません"];
+        }
+        return;
+    }
     if ([UFCommonMethods isNullComparedToObj:self.contextMenuTableView]) {
         NSLog(@"self.contextMenuTableView is not null(%@)", self.contextMenuTableView);
         self.contextMenuTableView = [[YALContextMenuTableView alloc]initWithTableViewDelegateDataSource:self];
@@ -998,16 +930,20 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     [tableView dismisWithIndexPath:indexPath];
     
-    UFArticleObject *article = arrArticle[currIndex];
-    NSString *strSendMessage = [self getRidOfTag:article.strContent];
-    if([self.menuTitles[indexPath.row] isEqualToString:STRING_LINE]){
-        [self lineText:strSendMessage];
-    }else if([self.menuTitles[indexPath.row] isEqualToString:STRING_TWITTER]){
-        [self postTwitter:strSendMessage];
-    }else if([self.menuTitles[indexPath.row] isEqualToString:STRING_FACEBOOK]){
-        [self postFacebook:strSendMessage];
-    }else if([self.menuTitles[indexPath.row] isEqualToString:STRING_INSTAGRAM]){
-        [self postInstagram:strSendMessage];
+    if(currIndex < arrArticle.count){
+        UFArticleObject *article = arrArticle[currIndex];
+        NSString *strSendMessage = [self getRidOfTag:article.strContent];
+        if([self.menuTitles[indexPath.row] isEqualToString:STRING_LINE]){
+            [self lineText:strSendMessage];
+        }else if([self.menuTitles[indexPath.row] isEqualToString:STRING_TWITTER]){
+            [self postTwitter:strSendMessage];
+        }else if([self.menuTitles[indexPath.row] isEqualToString:STRING_FACEBOOK]){
+            [self postFacebook:strSendMessage];
+        }else if([self.menuTitles[indexPath.row] isEqualToString:STRING_INSTAGRAM]){
+            [self postInstagram:strSendMessage];
+        }
+    }else{
+        [SVProgressHUD showErrorWithStatus:@"記事情報が取得できません"];
     }
     
     
@@ -1133,11 +1069,14 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     
     
-    
-    UFArticleObject *article = arrArticle[currIndex];
-    NSString *strSendMessage = [self getRidOfTag:article.strContent];
-    
-    [self postTwitter:strSendMessage];
+    if(currIndex < arrArticle.count){
+        UFArticleObject *article = arrArticle[currIndex];
+        NSString *strSendMessage = [self getRidOfTag:article.strContent];
+        
+        [self postTwitter:strSendMessage];
+    }else{
+        [SVProgressHUD showErrorWithStatus:@"記事情報が取得できません"];
+    }
     
     
 }
@@ -1146,35 +1085,57 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 //viewdidload内で
 -(void)setTweetComponent{
     
-    NSLog(@"%s", __func__);
+    NSLog(@"%s = %@", __func__);
     
     //sky-blue-button
-    UIView *viewSkyBlue = [[UIView alloc]initWithFrame:
-                           CGRectMake(0, self.view.bounds.size.height - HEIGHT_FOOTER_SOCIAL - HEIGHT_FOOTER_AD,
-                                      self.view.bounds.size.width, HEIGHT_FOOTER_SOCIAL)];
-    viewSkyBlue.backgroundColor = RGB(128, 224, 255);//sky-blue-color
-    [self.view addSubview:viewSkyBlue];
+//    UIView *viewSkyBlue = [[UIView alloc]initWithFrame:
+//                           CGRectMake(0, self.view.bounds.size.height - HEIGHT_FOOTER_SOCIAL - HEIGHT_FOOTER_AD,
+//                                      self.view.bounds.size.width, HEIGHT_FOOTER_SOCIAL)];
+//    viewSkyBlue.backgroundColor = RGB(128, 224, 255);//sky-blue-color
+//    [self.view addSubview:viewSkyBlue];
+//    
+//    //ツィートボタン
+//    UIImageView *imvTweet = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"tweetTrivia"]];
+//    imvTweet.frame = CGRectMake(0, self.view.bounds.size.height - HEIGHT_FOOTER_AD - HEIGHT_FOOTER_SOCIAL,
+//                                320,//画像サイズ調整のため一定にする
+//                                HEIGHT_FOOTER_SOCIAL);
+//    imvTweet.center = CGPointMake(self.view.center.x,
+//                                  imvTweet.center.y);
+//    
+//    imvTweet.clipsToBounds = YES;
+//    imvTweet.contentMode = UIViewContentModeScaleAspectFill;
+//    [self.view addSubview:imvTweet];
+//    [self.view bringSubviewToFront:imvTweet];
+//    
+//    
+//    //反応用ボタン
+//    UIView *viewForButton = [[UIView alloc]initWithFrame:viewSkyBlue.frame];
+//    viewForButton.backgroundColor = [UIColor clearColor];
+//    [self.view addSubview:viewForButton];
+//    
     
-    //ツィートボタン
-    UIImageView *imvTweet = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"tweetTrivia"]];
-    imvTweet.frame = CGRectMake(0, self.view.bounds.size.height - HEIGHT_FOOTER_AD - HEIGHT_FOOTER_SOCIAL,
-                                320,//画像サイズ調整のため一定にする
-                                HEIGHT_FOOTER_SOCIAL);
-    imvTweet.center = CGPointMake(self.view.center.x,
-                                  imvTweet.center.y);
     
-    imvTweet.clipsToBounds = YES;
-    imvTweet.contentMode = UIViewContentModeScaleAspectFill;
-    [self.view addSubview:imvTweet];
-    [self.view bringSubviewToFront:imvTweet];
+//    UIImageView *imvTriviaForTweet =
+//    [[UIImageView alloc]initWithImage:
+//     [UIImage imageNamed:@"trivia_icon"]];
+//    imvTriviaForTweet.frame = CGRectMake(0, 0, 40, 40);
+//    imvTriviaForTweet.center =
+//    CGPointMake(self.view.bounds.size.width - imvTriviaForTweet.bounds.size.width,
+//                self.view.bounds.size.height - imvTriviaForTweet.bounds.size.height * 2);
+//    imvTriviaForTweet.layer.cornerRadius = imvTriviaForTweet.bounds.size.width/2;
+//    imvTriviaForTweet.layer.masksToBounds = YES;
+//    [self.view addSubview:imvTriviaForTweet];
+//    [self.view bringSubviewToFront:imvTriviaForTweet];
+//    
+//    NSLog(@"imvTriviaForTweet = %@", imvTriviaForTweet);
+//    imvTriviaForTweet.userInteractionEnabled = YES;
+//    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tappedTweetLogo:)];
+//    [imvTriviaForTweet addGestureRecognizer:gesture];
+
     
-    
-    //反応用ボタン
-    UIView *viewForButton = [[UIView alloc]initWithFrame:viewSkyBlue.frame];
-    viewForButton.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:viewForButton];
-    
-    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tappedTweetLogo:)];
-    [viewForButton addGestureRecognizer:gesture];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    return NO;
 }
 @end

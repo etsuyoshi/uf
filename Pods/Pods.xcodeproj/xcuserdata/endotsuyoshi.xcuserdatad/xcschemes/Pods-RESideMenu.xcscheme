@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0640"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FBA34BA74FEA6D11883D8999"
+               BlueprintIdentifier = "FB227E94DA05E04B2746DEBB"
                BuildableName = "libPods-RESideMenu.a"
                BlueprintName = "Pods-RESideMenu"
                ReferencedContainer = "container:Pods.xcodeproj">

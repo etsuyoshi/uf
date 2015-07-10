@@ -1,0 +1,153 @@
+# Customise this file, documentation can be found here:
+# https://github.com/KrauseFx/fastlane/tree/master/docs
+# All available actions: https://github.com/KrauseFx/fastlane/blob/master/docs/Actions.md
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# By default, fastlane will send which actions are used
+# No personal data is shared, more information on https://github.com/fastlane/enhancer
+# Uncomment the following line to opt out
+# opt_out_usage
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "1.5.0"
+
+default_platform :ios
+
+
+platform :ios do
+
+  before_all do
+     # watanabe-channel:labomachine
+     ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+
+     # base-channel:ios
+     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+     ENV["FL_SLACK_MESSAGE"] = "success auto-crashlytics delivering! with fastlane by endo\n https://github.com/\n Y'all! check it out"
+
+
+     # test
+     #resign(
+     #  signing_identity: "iPhone Distribution: Roland Leth (123456)",
+     #  provisioning_profile: "fastlane/adhoc.mobileprovision"
+     #)
+
+    # cocoapods
+
+    # increment_build_number
+
+    # ipa # Build your app - more options available
+
+
+
+    # xctool # run the tests of your app
+  end
+
+  desc "Runs all the tests"
+  lane :test do
+    snapshot
+  end
+
+  desc "Submit a new Beta Build to Apple TestFlight"
+  desc "This will also make sure the profile is up to date"
+  lane :beta do
+    #snapshot
+    sigh(adhoc: true)
+    #sigh :adhoc
+    #system("ipa build -c \"AdHoc\" -w ../<AppName>.xcworkspace -s '<AppName>'")
+    #system("./floatsign.sh <AppName>.ipa \"iPhone Distribution: <team>" -b 'some.bundle.id' -p #{Actions.lane_context[Actions::SharedValues::SIGH_PROFILE_PATH]} <AppName>AdHoc.ipa")
+
+    crashlytics({
+      crashlytics_path: './Crashlytics.framework',
+      api_token: 'fda572617282d21daffc4e05e76a13d1670c18bb',
+      build_secret: '78aa50fb7ac5b691b7d0364f5c3e3584335ffbe71af39abdb13e9cf6f87b920d',
+      ipa_path: './Uberfacts.ipa'
+    })
+    #slack
+    # deliver(beta: true)
+
+    # sh "your_script.sh"
+    # You can also use other beta testing services here
+  end
+
+  desc "Deploy a new version to the App Store"
+  desc "** Full Markdown** Support: `code`"
+  lane :deploy do
+    snapshot
+    sigh
+    deliver(skip_deploy: true, force: true)
+    # frameit
+  end
+
+  # You can define as many lanes as you want
+
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+    
+    # slack(
+    #   message: "Successfully deployed new App Update."
+    # )
+  end
+
+
+  error do |lane, exception|
+    # slack(
+    #   message: exception.message,
+    #   success: false
+    # )
+  end
+
+end
+
+
+# More information about multiple platforms in fastlane: 
+# https://github.com/KrauseFx/fastlane/blob/master/docs/Platforms.md
+
+<pre class="&quot;brush:">particleEmitter = (CAEmitterLayer *) self.layer;
+
+particleEmitter.emitterPosition = CGPointMake(0, 0);//CGPointMake(frame.origin.x, frame.origin.y);//CGPointMake(0, 0);
+
+particleEmitter.emitterSize = CGSizeMake(frame.size.width, frame.size.height);
+
+particleEmitter.renderMode = kCAEmitterLayerAdditive;
+
+              
+
+CAEmitterCell *emitterCell = [CAEmitterCell emitterCell];
+
+emitterCell.birthRate = myBirthRate;//火や水に見せるためには数百が必要
+
+emitterCell.lifetime = 0.5;
+
+emitterCell.lifetimeRange = 0.5;
+
+emitterCell.color = [[UIColor colorWithRed: 0.5 green: 0.1 blue: 0.1 alpha: 0.1] CGColor];
+
+emitterCell.contents = (id) [[UIImage imageNamed: @"Particles_fire.png"] CGImage];
+
+emitterCell.name = @"fire";
+
+emitterCell.velocity = 50;
+
+emitterCell.velocityRange = 20;
+
+emitterCell.emissionLongitude = M_PI_2;
+
+emitterCell.emissionRange = M_PI_2;
+
+emitterCell.scale = 0.3f;
+
+emitterCell.scaleRange = 0;
+
+emitterCell.scaleSpeed = 0.5;
+
+emitterCell.spin = 0.5;
+
+particleEmitter.emitterCells = [NSArray arrayWithObject: emitterCell];
+</pre>

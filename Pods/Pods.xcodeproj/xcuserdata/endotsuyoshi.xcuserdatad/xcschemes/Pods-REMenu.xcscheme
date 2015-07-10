@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0640"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9852EFA8D7F4996E4578A2EE"
+               BlueprintIdentifier = "C20998EA9C76A00288781AD2"
                BuildableName = "libPods-REMenu.a"
                BlueprintName = "Pods-REMenu"
                ReferencedContainer = "container:Pods.xcodeproj">

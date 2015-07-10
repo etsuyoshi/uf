@@ -1,6 +1,0 @@
-#include "Pods-CardIO.xcconfig"
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/CardIO" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/CCBottomRefreshControl" "${PODS_ROOT}/Headers/Public/CardIO" "${PODS_ROOT}/Headers/Public/EAIntroView" "${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK" "${PODS_ROOT}/Headers/Public/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/Headers/Public/HTPressableButton" "${PODS_ROOT}/Headers/Public/Lambda-Alert" "${PODS_ROOT}/Headers/Public/Mantle" "${PODS_ROOT}/Headers/Public/PaymentKit" "${PODS_ROOT}/Headers/Public/REMenu" "${PODS_ROOT}/Headers/Public/RESideMenu" "${PODS_ROOT}/Headers/Public/ReactiveCocoa" "${PODS_ROOT}/Headers/Public/SDWebImage" "${PODS_ROOT}/Headers/Public/SVProgressHUD" "${PODS_ROOT}/Headers/Public/SVPullToRefresh" "${PODS_ROOT}/Headers/Public/SVWebViewController" "${PODS_ROOT}/Headers/Public/Stripe" "${PODS_ROOT}/Headers/Public/UICKeyChainStore" "${PODS_ROOT}/Headers/Public/UIView+TKGeometry"
-LIBRARY_SEARCH_PATHS = ${PODS_CARDIO_LIBRARY_SEARCH_PATHS}
-OTHER_LDFLAGS = ${PODS_CARDIO_OTHER_LDFLAGS} -ObjC
-PODS_ROOT = ${SRCROOT}

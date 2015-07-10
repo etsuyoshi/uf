@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>AFEE77B5-2E02-45DF-950E-8332D4C267BC</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Uberfacts</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>EBF502B5D82305B724466FBF0C0A657939D52B10</key>
+		<string>github.com:etsuyoshi/divisaderost.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Uberfacts.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>EBF502B5D82305B724466FBF0C0A657939D52B10</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:etsuyoshi/divisaderost.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>EBF502B5D82305B724466FBF0C0A657939D52B10</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EBF502B5D82305B724466FBF0C0A657939D52B10</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Uberfacts</string>
+		</dict>
+	</array>
+</dict>
+</plist>

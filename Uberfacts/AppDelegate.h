@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 com.endo. All rights reserved.
 //
 
+@import GoogleMobileAds;
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
@@ -14,10 +15,15 @@
 #import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>
 
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, RESideMenuDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, RESideMenuDelegate>{
+    GADBannerView *bannerView_;
+//    RESideMenu *sideMenuViewController;
+    UINavigationController * navigationController;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property (strong, nonatomic) NSString * tmpHandledItemId;
 
 @end
 

@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '7.0'
+platform :ios, '8.0'
 pod 'SVWebViewController', :head
 pod "AFNetworking", "~> 2.3"
 pod 'CCBottomRefreshControl'
@@ -17,5 +17,10 @@ pod 'Stripe'
 pod 'PaymentKit'
 pod 'Lambda-Alert'
 pod 'RESideMenu'
-pod 'Google-Mobile-Ads-SDK', '~> 6.10'
+#pod 'Google-Mobile-Ads-SDK', '~> 6.10'
+pod 'Google-Mobile-Ads-SDK', '~> 7.0'
 pod 'GoogleAnalytics-iOS-SDK', '3.10'
+pod 'Fabric/Crashlytics'
+pod 'Parse', '~> 1.7.4'
+pod 'pop', '~> 1.0'
+pod 'POP+MCAnimate', '~> 1.0'

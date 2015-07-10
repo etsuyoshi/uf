@@ -30,5 +30,6 @@
 +(void)setNavigationBar:(UINavigationBar*)navBar;
 
 +(NSMutableArray *)getSortedById:(NSMutableArray *)arrayArg;
-    
++(NSMutableAttributedString *)getAttributedString:(NSString *)text
+                                   withLineHeight:(float)customLineHeight;
 @end

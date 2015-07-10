@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0640"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E0D2F9BC179CB92C63BE85D4"
+               BlueprintIdentifier = "78FCE56AD569A21EF9F2820F"
                BuildableName = "libPods-PaymentKit.a"
                BlueprintName = "Pods-PaymentKit"
                ReferencedContainer = "container:Pods.xcodeproj">

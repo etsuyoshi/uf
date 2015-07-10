@@ -10,6 +10,13 @@
 
 @interface UIScrollView (BottomRefreshControl)
 
-@property (nonatomic, strong) UIRefreshControl *bottomRefreshControl;
+@property (nonatomic) UIRefreshControl *bottomRefreshControl;
+
+@end
+
+
+@interface UIRefreshControl (BottomRefreshControl)
+
+@property (nonatomic) CGFloat triggerVerticalOffset;
 
 @end

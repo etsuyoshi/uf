@@ -19,8 +19,9 @@
 #import "UFArticleObject.h"
 #import "SVProgressHUD.h"
 //admob広告
-#import "GADBannerView.h"
-#import "GADRequest.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
+//#import "GADBannerView.h"
+//#import "GADRequest.h"
 #import "UICKeyChainStore.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 

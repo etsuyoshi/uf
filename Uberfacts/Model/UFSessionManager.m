@@ -9,7 +9,11 @@
 #import "UFSessionManager.h"
 #import "UFCommonMethods.h"
 
-#define DATA_GET_NUM_MAX @"100"
+#ifdef DEBUG
+    #define DATA_GET_NUM_MAX @"10"
+#else
+    #define DATA_GET_NUM_MAX @"100"
+#endif
 
 //http://pocketti.zombie.jp/trivia/api/get_category_index/
 //http://pocketti.zombie.jp/trivia/api/get_category_posts/?slug=sex-love

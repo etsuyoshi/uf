@@ -14,10 +14,11 @@
 		2A0E9C301A7691A90003A1C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A0E9C2E1A7691A90003A1C0 /* Main.storyboard */; };
 		2A0E9C321A7691A90003A1C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A0E9C311A7691A90003A1C0 /* Images.xcassets */; };
 		2A0E9C351A7691A90003A1C0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A0E9C331A7691A90003A1C0 /* LaunchScreen.xib */; };
-		2A0E9C411A7691A90003A1C0 /* UberfactsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0E9C401A7691A90003A1C0 /* UberfactsTests.m */; };
 		2A0E9C4D1A76997D0003A1C0 /* UFLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0E9C4C1A76997D0003A1C0 /* UFLeftMenuViewController.m */; };
 		2A0E9C501A7699900003A1C0 /* UFRightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0E9C4F1A7699900003A1C0 /* UFRightMenuViewController.m */; };
 		2A0E9C531A769BEE0003A1C0 /* UFSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0E9C521A769BEE0003A1C0 /* UFSecondViewController.m */; };
+		2A3858D51AF48CAB00329176 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3858D31AF48CAB00329176 /* Fabric.framework */; };
+		2A3858D61AF48CAB00329176 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3858D41AF48CAB00329176 /* Crashlytics.framework */; };
 		2A3D9AD41A79473F002E3960 /* UFArticleObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3D9AD31A79473F002E3960 /* UFArticleObject.m */; };
 		2A7D61721A882E8B0089C073 /* h0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2A7D61641A882E8B0089C073 /* h0.jpg */; };
 		2A7D61731A882E8B0089C073 /* h1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2A7D61651A882E8B0089C073 /* h1.jpg */; };
@@ -44,6 +45,15 @@
 		2AAD2C161A7FC4A9002C9181 /* back0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2AAD2C131A7FC4A9002C9181 /* back0.jpg */; };
 		2AAD2C171A7FC4A9002C9181 /* back1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2AAD2C141A7FC4A9002C9181 /* back1.jpg */; };
 		2AAD2C181A7FC4A9002C9181 /* back2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2AAD2C151A7FC4A9002C9181 /* back2.jpg */; };
+		2AC977B71B46B4AD00D92D6C /* FirstInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC977B61B46B4AD00D92D6C /* FirstInterfaceController.m */; };
+		2AC977BA1B46B4AD00D92D6C /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC977B91B46B4AD00D92D6C /* NotificationController.m */; };
+		2AC977BD1B46B4AD00D92D6C /* GlanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC977BC1B46B4AD00D92D6C /* GlanceController.m */; };
+		2AC977BF1B46B4AD00D92D6C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AC977BE1B46B4AD00D92D6C /* Images.xcassets */; };
+		2AC977C31B46B4AD00D92D6C /* Dr.Trivia WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = 2AC977C21B46B4AD00D92D6C /* Dr.Trivia WatchKit App.app */; };
+		2AC977CB1B46B4AD00D92D6C /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AC977C91B46B4AD00D92D6C /* Interface.storyboard */; };
+		2AC977CD1B46B4AD00D92D6C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AC977CC1B46B4AD00D92D6C /* Images.xcassets */; };
+		2AC977D01B46B4AD00D92D6C /* Dr.Trivia WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2AC977B01B46B4AD00D92D6C /* Dr.Trivia WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2AC993F91B500C5700CD9EB0 /* WatchKitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC993F81B500C5700CD9EB0 /* WatchKitManager.m */; };
 		2AC9EC431A8FAC20006829F2 /* w0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2AC9EC341A8FAC20006829F2 /* w0.jpg */; };
 		2AC9EC441A8FAC20006829F2 /* w1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2AC9EC351A8FAC20006829F2 /* w1.jpg */; };
 		2AC9EC451A8FAC20006829F2 /* w2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2AC9EC361A8FAC20006829F2 /* w2.jpg */; };
@@ -104,6 +114,9 @@
 		2AC9ECAA1A8FB0E2006829F2 /* c2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2AC9ECA51A8FB0E2006829F2 /* c2.jpg */; };
 		2AC9ECAB1A8FB0E2006829F2 /* c3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2AC9ECA61A8FB0E2006829F2 /* c3.jpg */; };
 		2AC9ECAC1A8FB0E2006829F2 /* c4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2AC9ECA71A8FB0E2006829F2 /* c4.jpeg */; };
+		2AD0DBF31B4CCB1E003CF68F /* SecondInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD0DBF21B4CCB1E003CF68F /* SecondInterfaceController.m */; };
+		2AD0DBF61B4CCDF4003CF68F /* FirstTableRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD0DBF51B4CCDF4003CF68F /* FirstTableRowController.m */; };
+		2AD9B68F1AADCE6D0026632F /* trivia_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AD9B68E1AADCE6D0026632F /* trivia_icon.png */; };
 		2AE5E7381A7C05D900124540 /* UFCategoryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5E7371A7C05D900124540 /* UFCategoryObject.m */; };
 		2AF1AD201A8F8753003A7EBE /* tweet.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AF1AD1E1A8F8753003A7EBE /* tweet.png */; };
 		2AF1AD211A8F8753003A7EBE /* tweetTrivia.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AF1AD1F1A8F8753003A7EBE /* tweetTrivia.png */; };
@@ -119,14 +132,35 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2A0E9C3B1A7691A90003A1C0 /* PBXContainerItemProxy */ = {
+		2AC977C41B46B4AD00D92D6C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A0E9C191A7691A90003A1C0 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 2A0E9C201A7691A90003A1C0;
-			remoteInfo = Uberfacts;
+			remoteGlobalIDString = 2AC977C11B46B4AD00D92D6C;
+			remoteInfo = "Dr.Trivia WatchKit App";
+		};
+		2AC977CE1B46B4AD00D92D6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A0E9C191A7691A90003A1C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2AC977AF1B46B4AD00D92D6C;
+			remoteInfo = "Dr.Trivia WatchKit Extension";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2AC977D71B46B4AD00D92D6C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2AC977D01B46B4AD00D92D6C /* Dr.Trivia WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2A0DB5D21A7CB47400F2E34B /* UIColor+UFColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+UFColor.h"; path = "Common/UIColor+UFColor.h"; sourceTree = "<group>"; };
@@ -141,7 +175,6 @@
 		2A0E9C2F1A7691A90003A1C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2A0E9C311A7691A90003A1C0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2A0E9C341A7691A90003A1C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		2A0E9C3A1A7691A90003A1C0 /* UberfactsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UberfactsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A0E9C3F1A7691A90003A1C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A0E9C401A7691A90003A1C0 /* UberfactsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UberfactsTests.m; sourceTree = "<group>"; };
 		2A0E9C4B1A76997D0003A1C0 /* UFLeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UFLeftMenuViewController.h; path = ViewController/UFLeftMenuViewController.h; sourceTree = "<group>"; };
@@ -150,6 +183,8 @@
 		2A0E9C4F1A7699900003A1C0 /* UFRightMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UFRightMenuViewController.m; path = ViewController/UFRightMenuViewController.m; sourceTree = "<group>"; };
 		2A0E9C511A769BEE0003A1C0 /* UFSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UFSecondViewController.h; path = ViewController/UFSecondViewController.h; sourceTree = "<group>"; };
 		2A0E9C521A769BEE0003A1C0 /* UFSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UFSecondViewController.m; path = ViewController/UFSecondViewController.m; sourceTree = "<group>"; };
+		2A3858D31AF48CAB00329176 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		2A3858D41AF48CAB00329176 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		2A3D9AD21A79473F002E3960 /* UFArticleObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UFArticleObject.h; path = Model/UFArticleObject.h; sourceTree = "<group>"; };
 		2A3D9AD31A79473F002E3960 /* UFArticleObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UFArticleObject.m; path = Model/UFArticleObject.m; sourceTree = "<group>"; };
 		2A7D61641A882E8B0089C073 /* h0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = h0.jpg; path = image/heart/h0.jpg; sourceTree = "<group>"; };
@@ -183,6 +218,22 @@
 		2AAD2C131A7FC4A9002C9181 /* back0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back0.jpg; sourceTree = "<group>"; };
 		2AAD2C141A7FC4A9002C9181 /* back1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back1.jpg; sourceTree = "<group>"; };
 		2AAD2C151A7FC4A9002C9181 /* back2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back2.jpg; sourceTree = "<group>"; };
+		2AC977B01B46B4AD00D92D6C /* Dr.Trivia WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Dr.Trivia WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AC977B31B46B4AD00D92D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AC977B41B46B4AD00D92D6C /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		2AC977B51B46B4AD00D92D6C /* FirstInterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstInterfaceController.h; sourceTree = "<group>"; };
+		2AC977B61B46B4AD00D92D6C /* FirstInterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstInterfaceController.m; sourceTree = "<group>"; };
+		2AC977B81B46B4AD00D92D6C /* NotificationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
+		2AC977B91B46B4AD00D92D6C /* NotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
+		2AC977BB1B46B4AD00D92D6C /* GlanceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlanceController.h; sourceTree = "<group>"; };
+		2AC977BC1B46B4AD00D92D6C /* GlanceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlanceController.m; sourceTree = "<group>"; };
+		2AC977BE1B46B4AD00D92D6C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2AC977C21B46B4AD00D92D6C /* Dr.Trivia WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dr.Trivia WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AC977C81B46B4AD00D92D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AC977CA1B46B4AD00D92D6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		2AC977CC1B46B4AD00D92D6C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2AC993F71B500C5700CD9EB0 /* WatchKitManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WatchKitManager.h; path = Model/WatchKitManager.h; sourceTree = "<group>"; };
+		2AC993F81B500C5700CD9EB0 /* WatchKitManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchKitManager.m; path = Model/WatchKitManager.m; sourceTree = "<group>"; };
 		2AC9EC341A8FAC20006829F2 /* w0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = w0.jpg; path = image/wild/w0.jpg; sourceTree = "<group>"; };
 		2AC9EC351A8FAC20006829F2 /* w1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = w1.jpg; path = image/wild/w1.jpg; sourceTree = "<group>"; };
 		2AC9EC361A8FAC20006829F2 /* w2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = w2.jpg; path = image/wild/w2.jpg; sourceTree = "<group>"; };
@@ -243,6 +294,11 @@
 		2AC9ECA51A8FB0E2006829F2 /* c2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = c2.jpg; path = image/tv/c2.jpg; sourceTree = "<group>"; };
 		2AC9ECA61A8FB0E2006829F2 /* c3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = c3.jpg; path = image/tv/c3.jpg; sourceTree = "<group>"; };
 		2AC9ECA71A8FB0E2006829F2 /* c4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = c4.jpeg; path = image/tv/c4.jpeg; sourceTree = "<group>"; };
+		2AD0DBF11B4CCB1E003CF68F /* SecondInterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondInterfaceController.h; sourceTree = "<group>"; };
+		2AD0DBF21B4CCB1E003CF68F /* SecondInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondInterfaceController.m; sourceTree = "<group>"; };
+		2AD0DBF41B4CCDF4003CF68F /* FirstTableRowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstTableRowController.h; sourceTree = "<group>"; };
+		2AD0DBF51B4CCDF4003CF68F /* FirstTableRowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstTableRowController.m; sourceTree = "<group>"; };
+		2AD9B68E1AADCE6D0026632F /* trivia_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trivia_icon.png; sourceTree = "<group>"; };
 		2AE5E7361A7C05D900124540 /* UFCategoryObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UFCategoryObject.h; path = Model/UFCategoryObject.h; sourceTree = "<group>"; };
 		2AE5E7371A7C05D900124540 /* UFCategoryObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UFCategoryObject.m; path = Model/UFCategoryObject.m; sourceTree = "<group>"; };
 		2AE852E21A82FC880032D4DF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -276,10 +332,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D40CCED740FA3B43B483C5D9 /* libPods.a in Frameworks */,
+				2A3858D61AF48CAB00329176 /* Crashlytics.framework in Frameworks */,
+				2A3858D51AF48CAB00329176 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2A0E9C371A7691A90003A1C0 /* Frameworks */ = {
+		2AC977AD1B46B4AD00D92D6C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -303,6 +361,8 @@
 			children = (
 				2A0E9C231A7691A90003A1C0 /* Uberfacts */,
 				2A0E9C3D1A7691A90003A1C0 /* UberfactsTests */,
+				2AC977B11B46B4AD00D92D6C /* Dr.Trivia WatchKit Extension */,
+				2AC977C61B46B4AD00D92D6C /* Dr.Trivia WatchKit App */,
 				2A0E9C221A7691A90003A1C0 /* Products */,
 				892A1FA2ECC89B75D4953740 /* Pods */,
 				2F00C4A2DDAFE99927131414 /* Frameworks */,
@@ -313,7 +373,8 @@
 			isa = PBXGroup;
 			children = (
 				2A0E9C211A7691A90003A1C0 /* Uberfacts.app */,
-				2A0E9C3A1A7691A90003A1C0 /* UberfactsTests.xctest */,
+				2AC977B01B46B4AD00D92D6C /* Dr.Trivia WatchKit Extension.appex */,
+				2AC977C21B46B4AD00D92D6C /* Dr.Trivia WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -340,6 +401,7 @@
 		2A0E9C241A7691A90003A1C0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2AD9B68D1AADCDA20026632F /* trivia_icon */,
 				2AE5E71B1A7C01B700124540 /* image */,
 				2AAD2C121A7FC48B002C9181 /* background */,
 				2AAD2C0D1A7F81AD002C9181 /* owl */,
@@ -413,6 +475,8 @@
 				2A3D9AD31A79473F002E3960 /* UFArticleObject.m */,
 				2AE5E7361A7C05D900124540 /* UFCategoryObject.h */,
 				2AE5E7371A7C05D900124540 /* UFCategoryObject.m */,
+				2AC993F71B500C5700CD9EB0 /* WatchKitManager.h */,
+				2AC993F81B500C5700CD9EB0 /* WatchKitManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -458,6 +522,52 @@
 				2AAD2C151A7FC4A9002C9181 /* back2.jpg */,
 			);
 			name = background;
+			sourceTree = "<group>";
+		};
+		2AC977B11B46B4AD00D92D6C /* Dr.Trivia WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				2AC977B51B46B4AD00D92D6C /* FirstInterfaceController.h */,
+				2AC977B61B46B4AD00D92D6C /* FirstInterfaceController.m */,
+				2AD0DBF11B4CCB1E003CF68F /* SecondInterfaceController.h */,
+				2AD0DBF21B4CCB1E003CF68F /* SecondInterfaceController.m */,
+				2AD0DBF41B4CCDF4003CF68F /* FirstTableRowController.h */,
+				2AD0DBF51B4CCDF4003CF68F /* FirstTableRowController.m */,
+				2AC977B81B46B4AD00D92D6C /* NotificationController.h */,
+				2AC977B91B46B4AD00D92D6C /* NotificationController.m */,
+				2AC977BB1B46B4AD00D92D6C /* GlanceController.h */,
+				2AC977BC1B46B4AD00D92D6C /* GlanceController.m */,
+				2AC977BE1B46B4AD00D92D6C /* Images.xcassets */,
+				2AC977B21B46B4AD00D92D6C /* Supporting Files */,
+			);
+			path = "Dr.Trivia WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		2AC977B21B46B4AD00D92D6C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2AC977B31B46B4AD00D92D6C /* Info.plist */,
+				2AC977B41B46B4AD00D92D6C /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2AC977C61B46B4AD00D92D6C /* Dr.Trivia WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				2AC977C91B46B4AD00D92D6C /* Interface.storyboard */,
+				2AC977CC1B46B4AD00D92D6C /* Images.xcassets */,
+				2AC977C71B46B4AD00D92D6C /* Supporting Files */,
+			);
+			path = "Dr.Trivia WatchKit App";
+			sourceTree = "<group>";
+		};
+		2AC977C71B46B4AD00D92D6C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2AC977C81B46B4AD00D92D6C /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		2AC9EC2D1A8FABD9006829F2 /* celebrity */ = {
@@ -569,6 +679,15 @@
 			name = wild;
 			sourceTree = "<group>";
 		};
+		2AD9B68D1AADCDA20026632F /* trivia_icon */ = {
+			isa = PBXGroup;
+			children = (
+				2AD9B68E1AADCE6D0026632F /* trivia_icon.png */,
+			);
+			name = trivia_icon;
+			path = image/trivia_icon;
+			sourceTree = "<group>";
+		};
 		2AE5E71B1A7C01B700124540 /* image */ = {
 			isa = PBXGroup;
 			children = (
@@ -638,6 +757,8 @@
 		2F00C4A2DDAFE99927131414 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2A3858D31AF48CAB00329176 /* Fabric.framework */,
+				2A3858D41AF48CAB00329176 /* Crashlytics.framework */,
 				2AE852EE1A82FCC70032D4DF /* SystemConfiguration.framework */,
 				2AE852EC1A82FCBE0032D4DF /* MessageUI.framework */,
 				2AE852EA1A82FCB70032D4DF /* MediaPlayer.framework */,
@@ -671,33 +792,51 @@
 				2A0E9C1E1A7691A90003A1C0 /* Frameworks */,
 				2A0E9C1F1A7691A90003A1C0 /* Resources */,
 				C194F5C05C1B07B66A9106FE /* Copy Pods Resources */,
+				2A5A48051AAFE804006554A5 /* ShellScript */,
+				2AC977D71B46B4AD00D92D6C /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2AC977CF1B46B4AD00D92D6C /* PBXTargetDependency */,
 			);
 			name = Uberfacts;
 			productName = Uberfacts;
 			productReference = 2A0E9C211A7691A90003A1C0 /* Uberfacts.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2A0E9C391A7691A90003A1C0 /* UberfactsTests */ = {
+		2AC977AF1B46B4AD00D92D6C /* Dr.Trivia WatchKit Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2A0E9C471A7691A90003A1C0 /* Build configuration list for PBXNativeTarget "UberfactsTests" */;
+			buildConfigurationList = 2AC977D61B46B4AD00D92D6C /* Build configuration list for PBXNativeTarget "Dr.Trivia WatchKit Extension" */;
 			buildPhases = (
-				2A0E9C361A7691A90003A1C0 /* Sources */,
-				2A0E9C371A7691A90003A1C0 /* Frameworks */,
-				2A0E9C381A7691A90003A1C0 /* Resources */,
+				2AC977AC1B46B4AD00D92D6C /* Sources */,
+				2AC977AD1B46B4AD00D92D6C /* Frameworks */,
+				2AC977AE1B46B4AD00D92D6C /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				2A0E9C3C1A7691A90003A1C0 /* PBXTargetDependency */,
+				2AC977C51B46B4AD00D92D6C /* PBXTargetDependency */,
 			);
-			name = UberfactsTests;
-			productName = UberfactsTests;
-			productReference = 2A0E9C3A1A7691A90003A1C0 /* UberfactsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
+			name = "Dr.Trivia WatchKit Extension";
+			productName = "Dr.Trivia WatchKit Extension";
+			productReference = 2AC977B01B46B4AD00D92D6C /* Dr.Trivia WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		2AC977C11B46B4AD00D92D6C /* Dr.Trivia WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2AC977D51B46B4AD00D92D6C /* Build configuration list for PBXNativeTarget "Dr.Trivia WatchKit App" */;
+			buildPhases = (
+				2AC977C01B46B4AD00D92D6C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Dr.Trivia WatchKit App";
+			productName = "Dr.Trivia WatchKit App";
+			productReference = 2AC977C21B46B4AD00D92D6C /* Dr.Trivia WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
 		};
 /* End PBXNativeTarget section */
 
@@ -712,10 +851,13 @@
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = Y7QGWHWRZ7;
 					};
-					2A0E9C391A7691A90003A1C0 = {
-						CreatedOnToolsVersion = 6.1;
+					2AC977AF1B46B4AD00D92D6C = {
+						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = Y7QGWHWRZ7;
-						TestTargetID = 2A0E9C201A7691A90003A1C0;
+					};
+					2AC977C11B46B4AD00D92D6C = {
+						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = Y7QGWHWRZ7;
 					};
 				};
 			};
@@ -733,7 +875,8 @@
 			projectRoot = "";
 			targets = (
 				2A0E9C201A7691A90003A1C0 /* Uberfacts */,
-				2A0E9C391A7691A90003A1C0 /* UberfactsTests */,
+				2AC977AF1B46B4AD00D92D6C /* Dr.Trivia WatchKit Extension */,
+				2AC977C11B46B4AD00D92D6C /* Dr.Trivia WatchKit App */,
 			);
 		};
 /* End PBXProject section */
@@ -824,6 +967,7 @@
 				2AC9EC781A8FAC5E006829F2 /* s10.jpg in Resources */,
 				2A7D61741A882E8B0089C073 /* h2.jpg in Resources */,
 				2AC9EC751A8FAC5E006829F2 /* s7.jpg in Resources */,
+				2AD9B68F1AADCE6D0026632F /* trivia_icon.png in Resources */,
 				2AC9ECAB1A8FB0E2006829F2 /* c3.jpg in Resources */,
 				2A7D617A1A882E8B0089C073 /* h8.jpg in Resources */,
 				2A7D617E1A882E8B0089C073 /* h12.jpg in Resources */,
@@ -837,16 +981,40 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2A0E9C381A7691A90003A1C0 /* Resources */ = {
+		2AC977AE1B46B4AD00D92D6C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AC977C31B46B4AD00D92D6C /* Dr.Trivia WatchKit App.app in Resources */,
+				2AC977BF1B46B4AD00D92D6C /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2AC977C01B46B4AD00D92D6C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2AC977CB1B46B4AD00D92D6C /* Interface.storyboard in Resources */,
+				2AC977CD1B46B4AD00D92D6C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2A5A48051AAFE804006554A5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run fda572617282d21daffc4e05e76a13d1670c18bb 78aa50fb7ac5b691b7d0364f5c3e3584335ffbe71af39abdb13e9cf6f87b920d";
+		};
 		C194F5C05C1B07B66A9106FE /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -890,6 +1058,7 @@
 				2A0E9C531A769BEE0003A1C0 /* UFSecondViewController.m in Sources */,
 				2AFEC3DD1A7B1CDB0086172C /* LINEActivity.m in Sources */,
 				2AE5E7381A7C05D900124540 /* UFCategoryObject.m in Sources */,
+				2AC993F91B500C5700CD9EB0 /* WatchKitManager.m in Sources */,
 				2A0E9C501A7699900003A1C0 /* UFRightMenuViewController.m in Sources */,
 				2A9EED491A7BB974000381A7 /* YALContextMenuTableView.m in Sources */,
 				2A0E9C2A1A7691A90003A1C0 /* AppDelegate.m in Sources */,
@@ -903,21 +1072,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2A0E9C361A7691A90003A1C0 /* Sources */ = {
+		2AC977AC1B46B4AD00D92D6C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A0E9C411A7691A90003A1C0 /* UberfactsTests.m in Sources */,
+				2AD0DBF61B4CCDF4003CF68F /* FirstTableRowController.m in Sources */,
+				2AC977BA1B46B4AD00D92D6C /* NotificationController.m in Sources */,
+				2AC977B71B46B4AD00D92D6C /* FirstInterfaceController.m in Sources */,
+				2AC977BD1B46B4AD00D92D6C /* GlanceController.m in Sources */,
+				2AD0DBF31B4CCB1E003CF68F /* SecondInterfaceController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2A0E9C3C1A7691A90003A1C0 /* PBXTargetDependency */ = {
+		2AC977C51B46B4AD00D92D6C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2A0E9C201A7691A90003A1C0 /* Uberfacts */;
-			targetProxy = 2A0E9C3B1A7691A90003A1C0 /* PBXContainerItemProxy */;
+			target = 2AC977C11B46B4AD00D92D6C /* Dr.Trivia WatchKit App */;
+			targetProxy = 2AC977C41B46B4AD00D92D6C /* PBXContainerItemProxy */;
+		};
+		2AC977CF1B46B4AD00D92D6C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2AC977AF1B46B4AD00D92D6C /* Dr.Trivia WatchKit Extension */;
+			targetProxy = 2AC977CE1B46B4AD00D92D6C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -936,6 +1114,14 @@
 				2A0E9C341A7691A90003A1C0 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		2AC977C91B46B4AD00D92D6C /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2AC977CA1B46B4AD00D92D6C /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -958,8 +1144,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Tsuyoshi Endo (JDD7447U9P)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tsuyoshi Endo (JDD7447U9P)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tsuyoshi Endo (9F7RPH86TF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tsuyoshi Endo (9F7RPH86TF)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -976,10 +1162,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/**",
+					"$(PROJECT_DIR)/**",
+					"$(SRCROOT)/Pods/Fabric/Fabric.framework",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "185e17a6-b570-4cf0-813f-346a69a41359";
+				PROVISIONING_PROFILE = "05872a94-60b4-4381-8054-1992a71c4e5a";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1013,9 +1206,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/**",
+					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)/Pods/Fabric/Fabric.framework",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "1f8b3e9f-9cda-460d-a026-1b0f917a0f26";
+				PROVISIONING_PROFILE = "a159a3f5-dcd2-4ed8-b68b-a35cc6c992ba";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1026,19 +1226,45 @@
 			baseConfigurationReference = 934B88DC1283A457DBA5389A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Tsuyoshi Endo (JDD7447U9P)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tsuyoshi Endo (JDD7447U9P)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tsuyoshi Endo (9F7RPH86TF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tsuyoshi Endo (9F7RPH86TF)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "Uberfacts/Uberfacts-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/CCBottomRefreshControl\"",
+					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
+					"\"${PODS_ROOT}/Headers/Public/EAIntroView\"",
+					"\"${PODS_ROOT}/Headers/Public/EARestrictedScrollView\"",
+					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
+					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics-iOS-SDK\"",
+					"\"${PODS_ROOT}/Headers/Public/HTPressableButton\"",
+					"\"${PODS_ROOT}/Headers/Public/Lambda-Alert\"",
+					"\"${PODS_ROOT}/Headers/Public/Mantle\"",
+					"\"${PODS_ROOT}/Headers/Public/Masonry\"",
+					"\"${PODS_ROOT}/Headers/Public/PaymentKit\"",
+					"\"${PODS_ROOT}/Headers/Public/REMenu\"",
+					"\"${PODS_ROOT}/Headers/Public/RESideMenu\"",
+					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"\"${PODS_ROOT}/Headers/Public/SVProgressHUD\"",
+					"\"${PODS_ROOT}/Headers/Public/SVPullToRefresh\"",
+					"\"${PODS_ROOT}/Headers/Public/SVWebViewController\"",
+					"\"${PODS_ROOT}/Headers/Public/Stripe\"",
+					"\"${PODS_ROOT}/Headers/Public/UICKeyChainStore\"",
+					"$(SDKROOT)/usr/include/libz",
+				);
 				INFOPLIST_FILE = Uberfacts/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "185e17a6-b570-4cf0-813f-346a69a41359";
-				TARGETED_DEVICE_FAMILY = 1;
+				PROVISIONING_PROFILE = "05872a94-60b4-4381-8054-1992a71c4e5a";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1054,52 +1280,116 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "Uberfacts/Uberfacts-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/CCBottomRefreshControl\"",
+					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
+					"\"${PODS_ROOT}/Headers/Public/EAIntroView\"",
+					"\"${PODS_ROOT}/Headers/Public/EARestrictedScrollView\"",
+					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
+					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics-iOS-SDK\"",
+					"\"${PODS_ROOT}/Headers/Public/HTPressableButton\"",
+					"\"${PODS_ROOT}/Headers/Public/Lambda-Alert\"",
+					"\"${PODS_ROOT}/Headers/Public/Mantle\"",
+					"\"${PODS_ROOT}/Headers/Public/Masonry\"",
+					"\"${PODS_ROOT}/Headers/Public/PaymentKit\"",
+					"\"${PODS_ROOT}/Headers/Public/REMenu\"",
+					"\"${PODS_ROOT}/Headers/Public/RESideMenu\"",
+					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"\"${PODS_ROOT}/Headers/Public/SVProgressHUD\"",
+					"\"${PODS_ROOT}/Headers/Public/SVPullToRefresh\"",
+					"\"${PODS_ROOT}/Headers/Public/SVWebViewController\"",
+					"\"${PODS_ROOT}/Headers/Public/Stripe\"",
+					"\"${PODS_ROOT}/Headers/Public/UICKeyChainStore\"",
+					"$(SDKROOT)/usr/include/libz",
+				);
 				INFOPLIST_FILE = Uberfacts/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1f8b3e9f-9cda-460d-a026-1b0f917a0f26";
-				TARGETED_DEVICE_FAMILY = 1;
+				PROVISIONING_PROFILE = "a159a3f5-dcd2-4ed8-b68b-a35cc6c992ba";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		2A0E9C481A7691A90003A1C0 /* Debug */ = {
+		2AC977D11B46B4AD00D92D6C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tsuyoshi Endo (9F7RPH86TF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tsuyoshi Endo (9F7RPH86TF)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = UberfactsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Uberfacts.app/Uberfacts";
+				INFOPLIST_FILE = "Dr.Trivia WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "74e1abce-bf7e-4334-a7dc-28a727e94217";
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
-		2A0E9C491A7691A90003A1C0 /* Release */ = {
+		2AC977D21B46B4AD00D92D6C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Tsuyoshi Endo (Y7QGWHWRZ7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tsuyoshi Endo (Y7QGWHWRZ7)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Dr.Trivia WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "4cf14344-6b96-47db-8f24-c3c26c8b5341";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		2AC977D31B46B4AD00D92D6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = UberfactsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IBSC_MODULE = Dr_Trivia_WatchKit_Extension;
+				INFOPLIST_FILE = "Dr.Trivia WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Uberfacts.app/Uberfacts";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		2AC977D41B46B4AD00D92D6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Tsuyoshi Endo (Y7QGWHWRZ7)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				IBSC_MODULE = Dr_Trivia_WatchKit_Extension;
+				INFOPLIST_FILE = "Dr.Trivia WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "29b8f0e2-bd65-4802-b99e-7c7c08f4dd14";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
 			};
 			name = Release;
 		};
@@ -1124,11 +1414,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2A0E9C471A7691A90003A1C0 /* Build configuration list for PBXNativeTarget "UberfactsTests" */ = {
+		2AC977D51B46B4AD00D92D6C /* Build configuration list for PBXNativeTarget "Dr.Trivia WatchKit App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2A0E9C481A7691A90003A1C0 /* Debug */,
-				2A0E9C491A7691A90003A1C0 /* Release */,
+				2AC977D31B46B4AD00D92D6C /* Debug */,
+				2AC977D41B46B4AD00D92D6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2AC977D61B46B4AD00D92D6C /* Build configuration list for PBXNativeTarget "Dr.Trivia WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2AC977D11B46B4AD00D92D6C /* Debug */,
+				2AC977D21B46B4AD00D92D6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

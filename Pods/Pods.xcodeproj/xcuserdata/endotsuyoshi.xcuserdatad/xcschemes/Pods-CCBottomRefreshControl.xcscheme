@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0640"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "97F1709E4F6FE0F9F7CFA13F"
+               BlueprintIdentifier = "07B23787788BB49649665D86"
                BuildableName = "libPods-CCBottomRefreshControl.a"
                BlueprintName = "Pods-CCBottomRefreshControl"
                ReferencedContainer = "container:Pods.xcodeproj">

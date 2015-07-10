@@ -4,6 +4,27 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Dr.Trivia WatchKit App.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<true/>
+			<key>orderHint</key>
+			<integer>19</integer>
+		</dict>
+		<key>Glance - Dr.Trivia WatchKit App.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>21</integer>
+		</dict>
+		<key>Notification - Dr.Trivia WatchKit App.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<true/>
+			<key>orderHint</key>
+			<integer>20</integer>
+		</dict>
 		<key>Uberfacts.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +39,11 @@
 			<true/>
 		</dict>
 		<key>2A0E9C391A7691A90003A1C0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2AC977C11B46B4AD00D92D6C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

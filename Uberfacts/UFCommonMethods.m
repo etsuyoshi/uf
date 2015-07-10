@@ -140,4 +140,49 @@
     return arrayRet;
 }
 
+
++(NSMutableAttributedString *)getAttributedString:(NSString *)text
+                                   withLineHeight:(float)customLineHeight{
+    
+    if(![self isNullComparedToObj:text]){
+        // パラグラフスタイルにlineHeightをセット
+        NSMutableParagraphStyle *paragrahStyle = [[NSMutableParagraphStyle alloc] init];
+        paragrahStyle.minimumLineHeight = customLineHeight;
+        paragrahStyle.maximumLineHeight = customLineHeight;
+        
+        // NSAttributedStringを生成してパラグラフスタイルをセット
+        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:text];
+        [attributedText addAttribute:NSParagraphStyleAttributeName
+                               value:paragrahStyle
+                               range:NSMakeRange(0, attributedText.length)];
+        
+//        [attributedText addAttribute:NSFontAttributeName
+//                        value:[UIFont fontWithName:@"ChalkboardSE-Regular" size:30.f]
+//                        range:NSMakeRange(0, attrStr.length)];
+        
+        
+//        NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:text];
+//        /* パラグラフスタイルの設定しての描画 */
+//        attrStr = [[NSMutableAttributedString alloc] initWithString:@"truncatingTail"];
+//        NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+//        // 矩形が描画に必要なサイズより小さい場合に末尾を省略文字にする
+//        style.lineBreakMode = NSLineBreakByTruncatingTail;
+//        [attrStr addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:30.f], NSParagraphStyleAttributeName : style}
+//                         range:NSMakeRange(0, attrStr.length)];
+//        // 描画に必要なサイズを取得
+//        CGSize size = [attrStr boundingRectWithSize:rect.size
+//                                            options:NSStringDrawingUsesLineFragmentOrigin
+//                                            context:context].size;
+//        // 横幅を減らして描画(つまり描画に必要なサイズが足りない)
+//        [attrStr drawInRect:CGRectMake(0.f, drawnRect.size.height, size.width - 10.f, size.height)];
+        
+        
+        
+        return attributedText;
+        
+    }
+    
+    return nil;
+}
+
 @end

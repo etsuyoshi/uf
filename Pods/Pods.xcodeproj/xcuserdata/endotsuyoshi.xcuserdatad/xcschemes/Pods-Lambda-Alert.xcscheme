@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0640"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "66E66827A2F5DC07A6D248D2"
+               BlueprintIdentifier = "CD5E304C58C8C21D5D9798DE"
                BuildableName = "libPods-Lambda-Alert.a"
                BlueprintName = "Pods-Lambda-Alert"
                ReferencedContainer = "container:Pods.xcodeproj">
