@@ -24,9 +24,7 @@
 UIScrollViewDelegate
 ,UITableViewDelegate
 ,UITableViewDataSource
-//,UIWebViewDelegate
 ,YALContextMenuTableViewDelegate
-,UITextFieldDelegate
 >
 
 //@property (strong, nonatomic) GADBannerView  *bannerView;
